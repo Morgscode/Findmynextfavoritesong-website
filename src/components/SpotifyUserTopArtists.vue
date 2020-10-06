@@ -23,7 +23,7 @@ export default {
   },
   data() {
     return {
-      spotifyUserTopTracks: {},
+      spotifyUserTopArtists: {},
       SpotifyApiInterface: null,
     };
   },

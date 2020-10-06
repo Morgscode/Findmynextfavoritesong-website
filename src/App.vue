@@ -1,28 +1,99 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="container">
+    <!-- route outlet -->
+    <!-- component matched by the route will render here -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: {},
+};
 </script>
 
 <style>
+:root {
+  --body-font: Avenir, Helvetica, Arial, sans-serif;
+  --spotify-green: #1db954;
+  --green-accent: #27ae60;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  font-size: 62.5%;
+  background-color: #3a3a3a;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(47, 54, 64, 1),
+    rgba(53, 59, 72, 1)
+  );
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--body-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100vh;
+  min-width: 100vw;
+  font-size: 1.6rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 42px;
+  border: none;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease-out;
+  outline: none;
+}
+
+.btn:hover {
+  transform: translateY(-6px) scale(1);
+  box-shadow: 0px 10px 20px -10px #3a3a3a;
+}
+
+.btn:focus {
+  outline: none;
+  border: none;
+}
+
+.btn:active {
+  transform: translateY(6px) scale(0.9);
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--spotify-green);
+  color: #fff;
+  font-weight: 800;
+}
+
+.panel {
+  background-color: rgba(113, 128, 147, 1);
+  padding: 3rem;
+  max-width: 100%;
+  margin: 3rem auto;
+}
+
+.container {
+  max-width: 1300px;
+  margin: auto;
 }
 </style>

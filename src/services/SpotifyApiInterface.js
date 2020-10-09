@@ -16,15 +16,14 @@ class SpotifyApiInterface {
     return fetchOptions;
   }
 
-  spotifyFetchRequest(url) {
+  async spotifyFetchRequest(url) {
     const options = this.setSpotifyFetchOptions();
 
-    fetch(url, options)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => console.log(data))
+    const response = await fetch(url, options)
+      .then((response) => response.json())
+      // let's handle the error appropriately
       .catch((err) => console.log(err));
+    return response;
   }
 }
 

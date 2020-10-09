@@ -5,7 +5,6 @@
       <p>You'll need to login via Spotify to Authorize this service.</p>
       <button
         class="btn btn-primary login-btn"
-        v-bind:href="spotifyAuthUrl"
         v-on:click.stop="spotifyRedirect()"
       >
         Login via Spotify

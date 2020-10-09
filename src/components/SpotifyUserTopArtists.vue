@@ -1,13 +1,9 @@
 <template>
   <div id="user-top-artists">
-    <div class="container">
+    <div class="container" v-if="!tokenHasExpired">
       <div class="panel">
         <p>spotify user artists</p>
       </div>
-    </div>
-    <div v-if="!token" id="error-message">
-      <small>Theres a problem with the spotift authorization token.</small>
-      <router-link to="/">let's try again</router-link>
     </div>
   </div>
 </template>
@@ -23,19 +19,26 @@ export default {
   },
   data() {
     return {
-      spotifyUserTopArtists: {},
-      SpotifyApiInterface: null,
+      spotifyUserTopArtists: [{}],
+      SpotifyApiInterface: {},
+      tokenHasExpired: false
     };
+
   },
-  created() {
+  async created() {
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      this.getSpotifyUserTopArtists();
+      this.spotifyUserTopArtists = await this.getSpotifyUserTopArtists();
+      //console.log(this.spotifyUserTopArtists);
+
+       if (this.spotifyUserTopArtists.error) {
+        this.tokenHasExpired = true;
+      }
     }
   },
   methods: {
     getSpotifyUserTopArtists() {
-      this.SpotifyApiInterface.spotifyFetchRequest(
+      return this.SpotifyApiInterface.spotifyFetchRequest(
         "https://api.spotify.com/v1/me/top/artists"
       );
     },

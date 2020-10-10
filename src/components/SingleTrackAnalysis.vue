@@ -4,49 +4,60 @@
     <form class="track-analysis-form" @submit.prevent>
       <div class="field-group">
         <p class="slider-label">acousticness</p>
+        <small class="slider__description">A measurement of wether or not the track is acoustic</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.acousticness" />
       </div>
       <div class="field-group">
         <p class="slider-label">danceability</p>
+        <small class="slider__description">A measurement of how suitable the song is for dancing</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.danceability" />
       </div>
       <div class="field-group">
         <p class="slider-label">energy</p>
+        <small class="slider__description">A measurement of the tracks intensity and activity</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.energy" />
       </div>
       <div class="field-group">
         <p class="slider-label">instrumentalness</p>
+        <small class="slider__description">Predicts wether or not the track contains vocals</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.instrumentalness" />
       </div>
       <div class="field-group">
         <p class="slider-label">key</p>
-        <input class="slider" type="range" min="0" max="11" step="1" v-model="newTrackParams.instrumentalness" />
+        <small class="slider__description">A reference to which key the track is in. A reference to the pitch class notation scale (0 to 11).&nbsp;<a href="https://en.wikipedia.org/wiki/Pitch_class#Other_ways_to_label_pitch_classes" target="_blank">see the guide</a></small>
+        <input class="slider" type="range" min="0" max="11" step="1" v-model="newTrackParams.key" />
       </div>
       <div class="field-group">
         <p class="slider-label">liveliness</p>
+        <small class="slider__description">Detects the presence of an audience in the in the track's recording</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.liveliness" />
       </div>
       <div class="field-group">
         <p class="slider-label">loudness</p>
+        <small class="slider__description">The overall loudness of the track in decibels (dB)</small>
         <input class="slider" type="range" min="-60" max="0" step="0.001" v-model="newTrackParams.loudness" />
       </div>
       <div class="field-group">
         <p class="slider-label">mode</p>
+        <small class="slider__description">Indicates the modality of the track (minor to major)</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.mode" />
       </div>
       <div class="field-group">
         <p class="slider-label">speechiness</p>
+        <small class="slider__description">Detects the presence of spoken words in the track</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.speechiness" />
       </div>
       <div class="field-group">
         <p class="slider-label">tempo</p>
+        <small class="slider__description">The overall tempo of the track in beats per minute (BPM)</small>
         <input class="slider" type="range" min="0" max="1000" step="10" v-model="newTrackParams.tempo" />
       </div>
       <div class="field-group">
         <p class="slider-label">valence</p>
+        <small class="slider__description">valence describes the muscial 'positivity' of the track. A higher valence is a happier song</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.valence" />
       </div>
-      <button class="btn btn-primary" v-on:click.stop>Find me songs with these attributes</button>
+      <button class="btn btn-primary" v-on:click.stop="recommendationsRedirect(token, trackID, artistID, newTrackParams)">Find me songs with these attributes</button>
     </form>
   </div>
 </template>
@@ -61,10 +72,14 @@ export default {
     },
     trackID: {
       type: String,
-    }
+    },
+    artistID: {
+      type: String,
+    },
   },
   data() {
     return {
+      spotifyTrackAnalysisBaseUrl: `https://api.spotify.com/v1/audio-features/${this.trackID}`,
       spotifyTrackAnalysis: null,
       newTrackParams: {
         acousticness: 0,
@@ -72,14 +87,13 @@ export default {
         energy: 0,
         instrumentalness: 0,
         key: 0,
-        liveliness: 0,
+        liveness: 0,
         loudness: 0,
         mode: 0,
         speechiness: 0,
         tempo: 0,
         valence: 0,
       },
-      spotifyTrackAnalysisBaseUrl: `https://api.spotify.com/v1/audio-features/${this.trackID}`
     };
   },
   created() {
@@ -95,8 +109,30 @@ export default {
     },
     bindInitialTrackAnalysis() {
       this.newTrackParams = {...this.spotifyTrackAnalysis};
-    }
-  },
+    },
+    recommendationsRedirect(token, trackID, artistID,trackParams) {
+      this.$router.push(
+        {
+          path: 'track-recommendations', 
+          query: {
+            token: token,
+            trackID: trackID,
+            artistID: artistID,
+            acousticness: trackParams.acousticness, 
+            danceability: trackParams.danceability, 
+            energy: trackParams.energy, 
+            instrumentalness: trackParams.instrumentalness, 
+            key: trackParams.key, 
+            liveness: trackParams.liveness, 
+            loudness: trackParams.loudness, 
+            mode: trackParams.mode, 
+            speechiness: trackParams.speechiness, 
+            tempo: trackParams.tempo, 
+            valence: trackParams.valence,
+            }
+          });
+    },
+   },
 };
 </script>
 
@@ -145,6 +181,12 @@ export default {
 .slider-label {
   font-size:22px;
   margin-bottom: 1rem;
+}
+
+.slider__description {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 3rem;
 }
 
 </style>

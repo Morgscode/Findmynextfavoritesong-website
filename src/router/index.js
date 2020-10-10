@@ -1,8 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import SpotifyUser from "../views/SpotifyUser.vue";
-import TrackSearch from "../views/TrackSearch";
+import Home from "../views/Home";
+import SpotifyUser from "../views/SpotifyUser";
+import TrackAnalysis from "../views/TrackAnalysis";
+import SpotifyRecommendations from "../views/SpotifyRecommendations";
 
 Vue.use(VueRouter);
 
@@ -18,11 +19,16 @@ const routes = [
     component: SpotifyUser,
   },
   {
-    path: "/search",
-    name: "TrackSearch",
-    component: TrackSearch,
+    path: "/track-analysis",
+    name: "TrackAnalysis",
+    component: TrackAnalysis,
   },
-];
+  {
+    path: "/track-recommendations",
+    name: "SpotifyRecommendations",
+    component: SpotifyRecommendations,
+  },
+]; 
 
 const router = new VueRouter({
   mode: "history",

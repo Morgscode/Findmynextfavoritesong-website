@@ -1,6 +1,6 @@
 <template>
   <div id="user-top-tracks">
-    <div class="container" v-if="!tokenHasExpired">
+    <div v-if="!tokenHasExpired">
       <div class="panel tracks" v-if="spotifyTracks">
         <p class="tracks__header">Your favourite tracks on Spotify right now</p>
         <div class="track" v-bind:key="track.id" v-for="track in spotifyTracks">
@@ -17,7 +17,7 @@
             </div>
             <div v-else>There is no audio preview available for {{ track.name }} </div>
             <div>
-              <button class="btn btn-primary" v-on:click.stop="musicSearchRedirect(track.id, token)">
+              <button class="btn btn-primary" v-on:click.stop="musicAnalysisRedirect(track.id, token, track.artists[0].id)">
                 Find music similar to <span class="track__name"> {{ track.name }} </span>
               </button>
             </div>
@@ -79,8 +79,8 @@ export default {
         this.bindSpotifyUserTopTracks();
       }
     },
-    musicSearchRedirect(id, token) {
-      this.$router.push({path: 'search', query: {trackID: id ,token: token}});
+    musicAnalysisRedirect(id, token, artistID) {
+      this.$router.push({path: 'track-analysis', query: {trackID: id ,token: token, artistID: artistID}});
     }
   },
 };

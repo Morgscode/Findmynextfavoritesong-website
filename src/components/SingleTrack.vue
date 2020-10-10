@@ -47,6 +47,7 @@ export default {
   methods: {
     async getSpotifyTrack() {
        this.spotifyTrack = await this.SpotifyApiInterface.spotifyFetchRequest(this.spotifyTrackBaseUrl);
+
     }
   },
 };
@@ -120,10 +121,6 @@ export default {
       padding-bottom: 3rem;
     }
 
-    .track__image {
-       max-width: 80%;
-    }
-  
     .track {
       grid-template-columns: repeat(1, 1fr);
     }

@@ -9,7 +9,6 @@
 <script>
 export default {
   name: "App",
-  components: {},
 };
 </script>
 
@@ -33,6 +32,8 @@ export default {
 html,
 body {
   min-width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
   min-height: 100vh;
   font-size: 62.5%;
   background-color: #3a3a3a;
@@ -113,8 +114,18 @@ body {
   margin: auto;
 }
 
-@media only screen and (max-width: 576px) {
+form {
+  max-width: 100%;
+}
 
+@media only screen and (max-width: 576px) {
+  .btn {
+    max-width: 100%;
+  }
+
+  .container {
+    max-width: 100%;
+  }
 }
 
 </style>

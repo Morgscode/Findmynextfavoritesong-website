@@ -1,5 +1,5 @@
 <template>
-  <div id="spotify-user">
+  <div id="spotify-user" class="container">
     <SpotifyProfile v-bind:token="spotifyAccessToken" />
     <SpotifyUserTopTracks v-bind:token="spotifyAccessToken" />
   </div>

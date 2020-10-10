@@ -19,6 +19,7 @@ export default {
   --spotify-green: #1db954;
   --green-accent: #27ae60;
   --turquoise: #1abc9c;
+  --border: 2px solid var(--spotify-green);
 }
 
 *,
@@ -113,8 +114,7 @@ body {
 }
 
 @media only screen and (max-width: 576px) {
-  .btn {
-    margin: 1rem auto;
-  }
+
 }
+
 </style>

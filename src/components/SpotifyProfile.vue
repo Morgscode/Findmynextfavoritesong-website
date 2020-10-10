@@ -4,7 +4,7 @@
       <div class="panel" v-if="!displayErrorMessage">
         <div class="profile" >
           <img src="../assets/user.svg" class="user-icon" />
-          <p class="profile__user-details">Your spotify ID: {{ spotifyDisplayName }}</p>
+          <p class="profile__user-details">Your spotify ID: <span id="spotify-user-id">{{ spotifyDisplayName }}</span></p>
           <p class="profile__user-details">Followers: {{ spotifyFollowers }}</p>
           <a target="_blank" class="btn btn-alt" v-bind:href="spotifyWebplayerUrl">open your Spotify webplayer</a>
         </div> 
@@ -28,11 +28,11 @@ export default {
   },
   data() {
     return {
-      spotifyUserProfile: {},
-      SpotifyApiInterface: {},
+      spotifyUserProfile: null,
+      SpotifyApiInterface: null,
       displayErrorMessage: false,
-      spotifyWebplayerUrl: '',
-      spotifyDisplayName: '',
+      spotifyWebplayerUrl: null,
+      spotifyDisplayName: null,
       spotifyFollowers: 0,
     };
   },

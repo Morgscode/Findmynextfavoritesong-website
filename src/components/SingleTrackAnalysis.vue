@@ -77,6 +77,9 @@ export default {
       type: String,
     },
   },
+  /**
+    we'll need to grab the token and trackID from the store
+   */
   data() {
     return {
       spotifyTrackAnalysisBaseUrl: `https://api.spotify.com/v1/audio-features/${this.trackID}`,
@@ -110,6 +113,11 @@ export default {
     bindInitialTrackAnalysis() {
       this.newTrackParams = {...this.spotifyTrackAnalysis};
     },
+    /**
+      we'll need to persist the newTrackParams to the store 
+      and copy the track analysis response to this stored item
+      we can then mutate this as needed in the store
+     */
     recommendationsRedirect(token, trackID, artistID,trackParams) {
       this.$router.push(
         {

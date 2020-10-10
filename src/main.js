@@ -2,6 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 
+/**
+   we are going to need a store
+ */
+
 Vue.config.productionTip = false;
 
 new Vue({

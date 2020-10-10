@@ -19,6 +19,10 @@ export default {
       type: String,
     }
   },
+  /**
+    we'll need to grab the token, trackID, artistID and genres
+    from the store
+   */
   data() {
     return {
       spotifyRecommendationsBaseUrl: `https://api.spotify.com/v1/recommendations`,

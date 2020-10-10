@@ -4,11 +4,11 @@
       <div class="panel tracks">
         <p class="tracks__header">Your favourite tracks on Spotify right now</p>
         <div class="track" v-bind:key="track.id" v-for="track in spotifyTracks">
-          <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track from Spotify">
-          <div class="track-artist-details">
-              <p> {{ track.name}} </p>
-              <p> {{ track.album.name }} </p>
-              <p> {{ track.artists[0].name }} </p>
+         
+          <div class="track__details">
+               <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track from Spotify">
+              <p class="track__name"> {{ track.name }} </p>
+              <p class="track__artist"> {{ track.artists[0].name }} </p>
           </div>
           <div class="spotify-audio-preview" v-if="track.preview_url">
             <audio controls>
@@ -22,6 +22,8 @@
             </button>
           </div>
         </div>
+        <button v-if="spotifyUserTopTracks.previous" class="btn btn-alt" v-on:click.stop="loadPreviousSpotifyUserTopTracks()">See previous tracks</button>
+        <button v-if="spotifyUserTopTracks.next" class="btn btn-secondary" v-on:click.stop="loadMoreSpotifyUserTopTracks()">load more of your top tracks</button>
       </div>
     </div>
   </div>
@@ -43,28 +45,42 @@ export default {
       tokenHasExpired: false,
       spotifyTracks:[],
       spotifyTrackImage: '',
+      btnDisabled: true,
     };
   },
   async created() {
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      this.spotifyUserTopTracks = await this.getSpotifyUserTopTracks();
+      await this.getSpotifyUserTopTracks("https://api.spotify.com/v1/me/top/tracks");
+      this.displaySpotifyUserTopTracks();
       console.log(this.spotifyUserTopTracks);
-
-       if (this.spotifyUserTopTracks.error) {
-        this.tokenHasExpired = true;
-        return;
-      }
-
-      this.spotifyTracks = this.spotifyUserTopTracks.items;
-
     }
   },
+  updated() {
+  
+  },
   methods: {
-    getSpotifyUserTopTracks() {
-      return this.SpotifyApiInterface.spotifyFetchRequest(
-        "https://api.spotify.com/v1/me/top/tracks"
-      );
+    async getSpotifyUserTopTracks(url) {
+        this.spotifyUserTopTracks = await this.SpotifyApiInterface.spotifyFetchRequest(url);
+    },
+    displaySpotifyUserTopTracks() {
+       if (this.spotifyUserTopTracks.error) {
+          this.tokenHasExpired = true;
+          return;
+        }
+      this.spotifyTracks = this.spotifyUserTopTracks.items;
+    },
+    async loadMoreSpotifyUserTopTracks() {
+      if (this.spotifyUserTopTracks.next) {
+        await this.getSpotifyUserTopTracks(this.spotifyUserTopTracks.next);
+        this.displaySpotifyUserTopTracks();
+      }
+    },
+    async loadPreviousSpotifyUserTopTracks() {
+      if (this.spotifyUserTopTracks.previous) {
+        await this.getSpotifyUserTopTracks(this.spotifyUserTopTracks.previous);
+        this.displaySpotifyUserTopTracks();
+      }
     },
     musicSearchRedirect(id, token) {
       console.log(id)
@@ -87,17 +103,28 @@ export default {
     justify-items: center;
   }
 
+  .track__details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .track__image {
     max-width: 300px;
+    margin-bottom: 3rem;
   }
 
   .track__name {
     display: inline-block;
   }
 
+  .track__details .track__name {
+    font-weight: 600;
+  }
+
   @media  only screen and (min-width: 1201px) {
     .track {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 1rem;
       margin-bottom: 3rem;
     }
@@ -105,7 +132,7 @@ export default {
 
   @media only screen and (min-width: 576.1px) and (max-width: 1200px) {
     .track {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       grid-column-gap: 1rem;
     }
 

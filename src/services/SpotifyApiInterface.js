@@ -16,10 +16,10 @@ class SpotifyApiInterface {
     return fetchOptions;
   }
 
-  async spotifyFetchRequest(url) {
+  spotifyFetchRequest(url) {
     const options = this.setSpotifyFetchOptions();
 
-    const response = await fetch(url, options)
+    const response = fetch(url, options)
       .then((response) => response.json())
       // let's handle the error appropriately
       .catch((err) => console.log(err));

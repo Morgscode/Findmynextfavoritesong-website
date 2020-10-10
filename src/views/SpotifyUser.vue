@@ -18,13 +18,13 @@ export default {
   data() {
     return {
       urlHash: null,
-      urlHashArray: [],
+      urlHashArray: null,
       spotifyAccessToken: null,
     };
   },
   methods: {
     manageUrlHash(hash) {
-      if (hash) {
+      if (hash && typeof hash === "string") {
         this.urlHash = hash;
         this.urlHashArray = this.urlHash.split("&");
         this.urlHashArray[0] = this.urlHashArray[0].split("=");

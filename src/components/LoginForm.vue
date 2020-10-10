@@ -3,10 +3,7 @@
     <form @submit.prevent>
       <p>Find new music based on your current top tracks on Spotify.</p>
       <p>You'll need to login via Spotify to Authorize this service.</p>
-      <button
-        class="btn btn-primary login-btn"
-        v-on:click.stop="spotifyRedirect()"
-      >
+      <button class="btn btn-primary login-btn" v-on:click.stop="spotifyRedirect()">
         Login via Spotify
       </button>
     </form>

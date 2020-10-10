@@ -1,11 +1,11 @@
 <template>
   <div id="user-top-tracks">
     <div class="container" v-if="!tokenHasExpired">
-      <div class="panel tracks">
+      <div class="panel tracks" v-if="spotifyTracks">
         <p class="tracks__header">Your favourite tracks on Spotify right now</p>
         <div class="track" v-bind:key="track.id" v-for="track in spotifyTracks">
           <div class="track__details">
-               <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track from Spotify">
+               <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track's album from Spotify">
               <p class="track__name"> {{ track.name }} </p>
               <p class="track__artist"> {{ track.artists[0].name }} </p>
           </div>
@@ -41,11 +41,11 @@ export default {
   },
   data() {
     return {
-      spotifyUserTopTracks: {},
+      spotifyUserTopTracks: null,
       SpotifyApiInterface: {},
-      tokenHasExpired: false,
-      spotifyTracks:[],
-      spotifyTrackImage: '',
+      tokenHasExpired: null,
+      spotifyTracks:null,
+      spotifyTrackImage: null,
       spotifyTopTracksBaseUrl: "https://api.spotify.com/v1/me/top/tracks",
     };
   },
@@ -54,7 +54,6 @@ export default {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
       await this.getSpotifyUserTopTracks(this.spotifyTopTracksBaseUrl);
       this.bindSpotifyUserTopTracks();
-      console.log(this.spotifyUserTopTracks);
     }
   },
   methods: {
@@ -81,14 +80,13 @@ export default {
       }
     },
     musicSearchRedirect(id, token) {
-      console.log(id)
-      console.log(token);
+      this.$router.push({path: 'search', query: {trackID: id ,token: token}});
     }
   },
 };
 </script>
 
-<style>
+<style scoped>
   .tracks__header {
     font-size: 22px;
     margin-bottom: 3rem;
@@ -98,12 +96,16 @@ export default {
     display: grid;
     align-items: center;
     justify-items: center;
+    border-bottom: var(--border);
+    padding-bottom: 3rem;
+    margin-top: 3rem;
   }
 
   .track__details {
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: 22px;
   }
 
   .track__image {
@@ -128,11 +130,15 @@ export default {
     .track {
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 1rem;
-      margin-bottom: 3rem;
+      
+    }
+
+    .track:not(first-child) {
+      margin-top: 3rem
     }
   }
 
-  @media only screen and (min-width: 768.1px) and (max-width: 1200px) {
+  @media only screen and (min-width: 768px) and (max-width: 1200px) {
     .track {
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 1rem;
@@ -153,19 +159,16 @@ export default {
       grid-template-columns: repeat(1, 1fr);
     }
 
-    .track > * {
+    .track > *:not(:last-child) {
       margin-bottom: 3rem;
     }
   }
 
   @media only screen and (max-width: 576px) {
     
-    .track > * {
+    .track > *:not(:last-child) {
       margin-bottom: 1.5rem;
     }
 
-    .track__options div:first-child {
-      margin-bottom: 1.5rem;
-    }
   }
 </style>

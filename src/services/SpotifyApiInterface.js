@@ -1,4 +1,5 @@
 class SpotifyApiInterface {
+
   constructor(token) {
     this.token = token;
   }
@@ -21,6 +22,7 @@ class SpotifyApiInterface {
 
     const response = fetch(url, options)
       .then((response) => response.json())
+      //.then((data) => console.log(data)) 
       // let's handle the error appropriately
       .catch((err) => console.log(err));
     return response;

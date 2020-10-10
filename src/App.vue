@@ -112,5 +112,9 @@ body {
   margin: auto;
 }
 
-
+@media only screen and (max-width: 576px) {
+  .btn {
+    margin: 1rem auto;
+  }
+}
 </style>

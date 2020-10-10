@@ -6,7 +6,7 @@
           <img src="../assets/user.svg" class="user-icon" />
           <p class="profile__user-details">Your spotify ID: {{ spotifyDisplayName }}</p>
           <p class="profile__user-details">Followers: {{ spotifyFollowers }}</p>
-          <p class="profile__user-details"><a target="_blank" v-bind:href="spotifyWebplayerUrl">open your spotify webplayer</a></p>
+          <a target="_blank" class="btn btn-alt" v-bind:href="spotifyWebplayerUrl">open your Spotify webplayer</a>
         </div> 
       </div>
       <div v-else id="error-message" class="panel">
@@ -73,6 +73,10 @@ export default {
     justify-items: center;
 }
 
+.profile .btn-alt {
+  margin: 0;
+}
+
 @media only screen and (min-width: 768px) {
   .profile {
     grid-template-columns: auto auto auto auto;
@@ -89,8 +93,7 @@ export default {
 @media only screen and (max-width: 576px) {
    .profile {
     grid-template-columns: auto;
-    grid-row-gap: 1rem;
+    grid-row-gap: 1.5rem;
   }
 }
-
 </style>

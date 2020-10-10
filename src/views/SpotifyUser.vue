@@ -40,6 +40,9 @@ export default {
         this.urlHashArray[0][0].startsWith("#access_token")
       ) {
         this.spotifyAccessToken = this.urlHashArray[0][1];
+        /**
+          this is where we will push the token to the store
+         */
         return this.spotifyAccessToken;
       } else {
         return false;

@@ -39,6 +39,9 @@ export default {
       type: String,
     },
   },
+  /**
+    we'll need a function to retrieve the token from the store
+   */
   data() {
     return {
       spotifyUserTopTracks: null,
@@ -79,6 +82,9 @@ export default {
         this.bindSpotifyUserTopTracks();
       }
     },
+    /**
+      we'll need a function to push the trackID and artist ID to the store
+     */
     musicAnalysisRedirect(id, token, artistID) {
       this.$router.push({path: 'track-analysis', query: {trackID: id ,token: token, artistID: artistID}});
     }

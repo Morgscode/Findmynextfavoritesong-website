@@ -24,6 +24,9 @@ export default {
       type: String,
     },
   },
+  /**
+    we'll need a function to retrieve the token from the store
+   */
   data() {
     return {
       spotifyUserProfile: null,
@@ -43,7 +46,6 @@ export default {
           this.displayErrorMessage = true;
           return;
         }
-
       this.spotifyWebplayerUrl = this.spotifyUserProfile.external_urls.spotify;
       this.spotifyDisplayName = this.spotifyUserProfile.display_name;
       this.spotifyFollowers = this.spotifyUserProfile.followers.total;

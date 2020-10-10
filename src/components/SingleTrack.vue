@@ -32,6 +32,9 @@ export default {
       type: String,
     }
   },
+  /**
+    we'll need to grab the trackID and token from the store
+   */
   data() {
     return {
       spotifyTrack: null,

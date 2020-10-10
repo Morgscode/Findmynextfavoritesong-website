@@ -1,6 +1,7 @@
 <template>
   <div id="single-track-analysis" class="panel" v-if="spotifyTrackAnalysis">
-    <form class="track-analysis-form">
+    <p class="track-analysis__intro">This is the Spotify tack analysis of your chosen song. Spotify uses these attributes to classify music and suggest new songs to you. You can either search for new music based on these attributes as they are... or modify them with the sliders below.</p>
+    <form class="track-analysis-form" @submit.prevent>
       <div class="field-group">
         <p class="slider-label">acousticness</p>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.acousticness" />
@@ -45,7 +46,7 @@
         <p class="slider-label">valence</p>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.valence" />
       </div>
-      <button></button>
+      <button class="btn btn-primary" v-on:click.stop>Find me songs with these attributes</button>
     </form>
   </div>
 </template>
@@ -87,24 +88,25 @@ export default {
       this.getSpotifyTrackAnalysis();
     }
   },
-  updated() {
-    //console.log(this.newTrackParams);
-  },
   methods: {
     async getSpotifyTrackAnalysis() {
        this.spotifyTrackAnalysis = await this.SpotifyApiInterface.spotifyFetchRequest(this.spotifyTrackAnalysisBaseUrl);
-       //console.log(this.spotifyTrackAnalysis)
        this.bindInitialTrackAnalysis();
     },
     bindInitialTrackAnalysis() {
       this.newTrackParams = {...this.spotifyTrackAnalysis};
-      //console.log(this.newTrackParams);
     }
   },
 };
 </script>
 
 <style scoped>
+
+.track-analysis__intro {
+  text-align: left;
+  line-height: 1.5;
+  margin-bottom: 3rem;
+}
 
 .slider {
   -webkit-appearance: none;

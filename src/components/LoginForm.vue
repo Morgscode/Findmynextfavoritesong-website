@@ -17,7 +17,7 @@ export default {
     return {
       spotifyClientID: `083f78d343ae4a98b5b4e843b87f7b61`,
       redirectUrl: `http://localhost:8080/spotify-profile`,
-      scopes: `user-top-read%20user-read-email%20user-library-read`,
+      scopes: `user-read-email%20user-top-read%20user-library-read%20user-library-modify`,
       spotifyAuthUrl: ``,
     };
   },

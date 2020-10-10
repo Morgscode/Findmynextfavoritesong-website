@@ -4,22 +4,23 @@
       <div class="panel tracks">
         <p class="tracks__header">Your favourite tracks on Spotify right now</p>
         <div class="track" v-bind:key="track.id" v-for="track in spotifyTracks">
-         
           <div class="track__details">
                <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track from Spotify">
               <p class="track__name"> {{ track.name }} </p>
               <p class="track__artist"> {{ track.artists[0].name }} </p>
           </div>
-          <div class="spotify-audio-preview" v-if="track.preview_url">
-            <audio controls>
-              <source v-bind:src="track.preview_url" type="audio/mpeg">
-            </audio>
-          </div>
-          <div v-else>there is no audio preview available</div>
-          <div>
-            <button class="btn btn-primary" v-on:click.stop="musicSearchRedirect(track.id, token)">
-              Find music similar to <span class="track__name">{{ track.name }}</span>
-            </button>
+          <div class="track__options">
+            <div class="spotify-audio-preview" v-if="track.preview_url">
+              <audio controls>
+                <source v-bind:src="track.preview_url" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div v-else>There is no audio preview available for {{ track.name }} </div>
+            <div>
+              <button class="btn btn-primary" v-on:click.stop="musicSearchRedirect(track.id, token)">
+                Find music similar to <span class="track__name"> {{ track.name }} </span>
+              </button>
+            </div>
           </div>
         </div>
         <button v-if="spotifyUserTopTracks.previous" class="btn btn-alt" v-on:click.stop="loadPreviousSpotifyUserTopTracks()">See previous tracks</button>
@@ -45,25 +46,22 @@ export default {
       tokenHasExpired: false,
       spotifyTracks:[],
       spotifyTrackImage: '',
-      btnDisabled: true,
+      spotifyTopTracksBaseUrl: "https://api.spotify.com/v1/me/top/tracks",
     };
   },
   async created() {
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      await this.getSpotifyUserTopTracks("https://api.spotify.com/v1/me/top/tracks");
-      this.displaySpotifyUserTopTracks();
+      await this.getSpotifyUserTopTracks(this.spotifyTopTracksBaseUrl);
+      this.bindSpotifyUserTopTracks();
       console.log(this.spotifyUserTopTracks);
     }
-  },
-  updated() {
-  
   },
   methods: {
     async getSpotifyUserTopTracks(url) {
         this.spotifyUserTopTracks = await this.SpotifyApiInterface.spotifyFetchRequest(url);
     },
-    displaySpotifyUserTopTracks() {
+    bindSpotifyUserTopTracks() {
        if (this.spotifyUserTopTracks.error) {
           this.tokenHasExpired = true;
           return;
@@ -73,13 +71,13 @@ export default {
     async loadMoreSpotifyUserTopTracks() {
       if (this.spotifyUserTopTracks.next) {
         await this.getSpotifyUserTopTracks(this.spotifyUserTopTracks.next);
-        this.displaySpotifyUserTopTracks();
+        this.bindSpotifyUserTopTracks();
       }
     },
     async loadPreviousSpotifyUserTopTracks() {
       if (this.spotifyUserTopTracks.previous) {
         await this.getSpotifyUserTopTracks(this.spotifyUserTopTracks.previous);
-        this.displaySpotifyUserTopTracks();
+        this.bindSpotifyUserTopTracks();
       }
     },
     musicSearchRedirect(id, token) {
@@ -91,7 +89,6 @@ export default {
 </script>
 
 <style>
-
   .tracks__header {
     font-size: 22px;
     margin-bottom: 3rem;
@@ -110,7 +107,7 @@ export default {
   }
 
   .track__image {
-    max-width: 300px;
+    max-width: 400px;
     margin-bottom: 3rem;
   }
 
@@ -122,17 +119,22 @@ export default {
     font-weight: 600;
   }
 
+  .track__options div:first-child {
+    display: block;
+    margin-bottom: 3rem;
+  }
+
   @media  only screen and (min-width: 1201px) {
     .track {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 1rem;
       margin-bottom: 3rem;
     }
   }
 
-  @media only screen and (min-width: 576.1px) and (max-width: 1200px) {
+  @media only screen and (min-width: 768.1px) and (max-width: 1200px) {
     .track {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 1rem;
     }
 
@@ -141,7 +143,7 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 576px) {
+  @media only screen and (max-width: 768px) {
 
     .track__image {
        max-width: 80%;
@@ -152,9 +154,18 @@ export default {
     }
 
     .track > * {
-      margin-bottom: 1.5rem;
+      margin-bottom: 3rem;
     }
   }
 
+  @media only screen and (max-width: 576px) {
+    
+    .track > * {
+      margin-bottom: 1.5rem;
+    }
 
+    .track__options div:first-child {
+      margin-bottom: 1.5rem;
+    }
+  }
 </style>

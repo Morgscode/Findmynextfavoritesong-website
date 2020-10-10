@@ -2,21 +2,18 @@
   <div id="spotify-user">
     <SpotifyProfile v-bind:token="spotifyAccessToken" />
     <SpotifyUserTopTracks v-bind:token="spotifyAccessToken" />
-    <SpotifyUserTopArtists v-bind:token="spotifyAccessToken" />
   </div>
 </template>
 
 <script>
 import SpotifyProfile from "../components/SpotifyProfile.vue";
 import SpotifyUserTopTracks from "../components/SpotifyUserTopTracks";
-import SpotifyUserTopArtists from "../components/SpotifyUserTopArtists";
 
 export default {
   name: "SpotifyUser",
   components: {
     SpotifyProfile,
     SpotifyUserTopTracks,
-    SpotifyUserTopArtists,
   },
   data() {
     return {

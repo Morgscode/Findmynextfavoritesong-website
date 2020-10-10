@@ -18,6 +18,7 @@ export default {
   --body-font: Avenir, Helvetica, Arial, sans-serif;
   --spotify-green: #1db954;
   --green-accent: #27ae60;
+  --turquoise: #1abc9c;
 }
 
 *,
@@ -54,12 +55,16 @@ body {
 
 .btn {
   display: inline-block;
-  padding: 12px 42px;
+  padding: 12px 22px;
+  height: 54px;
+  width: 300px;
   border: none;
   text-decoration: none;
   border-radius: 50px;
   transition: all 0.3s ease-out;
   outline: none;
+  color: #fff;
+  font-weight: 800;
 }
 
 .btn:hover {
@@ -81,8 +86,18 @@ body {
 
 .btn-primary {
   background-color: var(--spotify-green);
-  color: #fff;
-  font-weight: 800;
+ 
+}
+
+.btn-secondary {
+  background-color: var(--turquoise);
+  margin: 2rem;
+}
+
+.btn-alt, .btn-alt:focus, .btn-alt:active {
+  background-color: transparent;
+  border: 3px solid var(--turquoise);
+  margin: 2rem;
 }
 
 .panel {
@@ -96,4 +111,6 @@ body {
   max-width: 1300px;
   margin: auto;
 }
+
+
 </style>

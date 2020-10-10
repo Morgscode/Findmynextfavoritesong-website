@@ -1,8 +1,7 @@
 <template>
   <div id="track-search" class="container">
-    <p>track search works!</p>
-    <SingleTrack v-bind:token="token" v-bind:trackID="trackID" />
-    <SingleTrackAnalysis v-bind:token="token" v-bind:trackID="trackID" />
+    <SingleTrack v-bind:token="token" v-bind:trackID="trackID" v-bind:artistID="artistID"/>
+    <SingleTrackAnalysis v-bind:token="token" v-bind:trackID="trackID" v-bind:artistID="artistID" />
   </div>
 </template>
 
@@ -11,8 +10,7 @@ import SingleTrack from "../components/SingleTrack.vue";
 import SingleTrackAnalysis from "../components/SingleTrackAnalysis.vue";
 
 export default {
-  
-  name: "TrackSearch",
+  name: "TrackAnalysis",
   components: {
     SingleTrack,
     SingleTrackAnalysis
@@ -21,11 +19,13 @@ export default {
     return {
       trackID: null,
       token: null,
+      artistID: null,
     };
   },
   created() {
     this.token = this.$route.query.token;
     this.trackID = this.$route.query.trackID;
+    this.artistID = this.$route.query.artistID;
   }
 };
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div id="spotify-user-profile">
-    <div class="container">
       <div class="panel" v-if="!displayErrorMessage">
         <div class="profile" >
           <img src="../assets/user.svg" class="user-icon" />
@@ -13,7 +12,6 @@
         <small>Theres a problem with the spotify authorization token. &nbsp;</small>
         <router-link to="/"><span class="error-message-link">let's try again</span></router-link>
       </div>
-    </div>
   </div>
 </template>
 

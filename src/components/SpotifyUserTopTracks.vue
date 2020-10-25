@@ -17,7 +17,7 @@
             </div>
             <div v-else>There is no audio preview available for {{ track.name }} </div>
             <div>
-              <button class="btn btn-primary" v-on:click.stop="musicAnalysisRedirect(track.id, token, track.artists[0].id)">
+              <button class="btn btn-primary" v-on:click.stop="musicAnalysisRedirect(track.id, track.artists[0].id)">
                 Find music similar to <span class="track__name"> {{ track.name }} </span>
               </button>
             </div>
@@ -31,14 +31,10 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "SpotifyUserTopTracks",
-  props: {
-    token: {
-      type: String,
-    },
-  },
   /**
     we'll need a function to retrieve the token from the store
    */
@@ -52,7 +48,11 @@ export default {
       spotifyTopTracksBaseUrl: "https://api.spotify.com/v1/me/top/tracks",
     };
   },
+  computed: {
+    ...mapGetters(["getSpotifyAccessKey"]),
+  },
   async created() {
+    this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
       await this.getSpotifyUserTopTracks(this.spotifyTopTracksBaseUrl);
@@ -60,6 +60,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(["setSeedTrackID", "setSeedArtistID"]),
     async getSpotifyUserTopTracks(url) {
         this.spotifyUserTopTracks = await this.SpotifyApiInterface.spotifyFetchRequest(url);
     },
@@ -85,8 +86,10 @@ export default {
     /**
       we'll need a function to push the trackID and artist ID to the store
      */
-    musicAnalysisRedirect(id, token, artistID) {
-      this.$router.push({path: 'track-analysis', query: {trackID: id ,token: token, artistID: artistID}});
+    async musicAnalysisRedirect(trackID, artistID) {
+      this.setSeedTrackID(trackID);
+      this.setSeedArtistID(artistID);
+      this.$router.push('track-analysis');
     }
   },
 };

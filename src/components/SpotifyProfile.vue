@@ -16,14 +16,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "SpotifyUserProfile",
-  props: {
-    token: {
-      type: String,
-    },
-  },
   /**
     we'll need a function to retrieve the token from the store
    */
@@ -37,7 +33,11 @@ export default {
       spotifyFollowers: 0,
     };
   },
+  computed: {
+    ...mapGetters(["getSpotifyAccessKey"])
+  },
   async created() {
+    this.token = await this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
       this.spotifyUserProfile = await this.getSpotifyUserProfile();

@@ -1,11 +1,12 @@
 <template>
   <div id="spotify-user" class="container">
-    <SpotifyProfile v-bind:token="spotifyAccessToken" />
-    <SpotifyUserTopTracks v-bind:token="spotifyAccessToken" />
+    <SpotifyProfile />
+    <SpotifyUserTopTracks />
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import SpotifyProfile from "../components/SpotifyProfile.vue";
 import SpotifyUserTopTracks from "../components/SpotifyUserTopTracks";
 
@@ -23,6 +24,9 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(
+      ["setSpotifyAccessKey"],
+    ),
     manageUrlHash(hash) {
       if (hash && typeof hash === "string") {
         this.urlHash = hash;
@@ -33,17 +37,16 @@ export default {
         return false;
       }
     },
-    setNewSpotifyAccessToken() {
+    async setNewSpotifyAccessToken() {
       if (
         typeof this.urlHashArray[0][0] === "string" &&
         typeof this.urlHashArray[0][1] === "string" &&
         this.urlHashArray[0][0].startsWith("#access_token")
       ) {
-        this.spotifyAccessToken = this.urlHashArray[0][1];
         /**
           this is where we will push the token to the store
          */
-        return this.spotifyAccessToken;
+       return await this.setSpotifyAccessKey(this.urlHashArray[0][1]);
       } else {
         return false;
       }

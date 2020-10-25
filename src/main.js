@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueScrollTo from "vue-scrollto";
 import App from "./App.vue";
 import router from "./router";
+import store from "./store";
 
 Vue.use(VueScrollTo, {
   container: "body",
@@ -12,13 +13,10 @@ Vue.use(VueScrollTo, {
   y: true,
 });
 
-/**
-   we are going to need a store
- */
-
 Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");

@@ -1,7 +1,7 @@
 <template>
   <div id="track-search" class="container">
-    <SingleTrack v-bind:token="token" v-bind:trackID="trackID" v-bind:artistID="artistID"/>
-    <SingleTrackAnalysis v-bind:token="token" v-bind:trackID="trackID" v-bind:artistID="artistID" />
+    <SingleTrack />
+    <SingleTrackAnalysis />
   </div>
 </template>
 
@@ -20,15 +20,11 @@ export default {
    */
   data() {
     return {
-      trackID: null,
-      token: null,
-      artistID: null,
+     
     };
   },
   created() {
-    this.token = this.$route.query.token;
-    this.trackID = this.$route.query.trackID;
-    this.artistID = this.$route.query.artistID;
+    
   }
 };
 </script>

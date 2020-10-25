@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   name: "LoginForm",
   data() {
@@ -22,9 +23,11 @@ export default {
     };
   },
   created() {
+    this.resetSpotifyAccessKey();
     this.spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${this.spotifyClientID}&redirect_uri=${this.redirectUrl}&scope=${this.scopes}&response_type=token`;
   },
   methods: {
+    ...mapMutations(["resetSpotifyAccessKey"]),
     spotifyRedirect() {
       window.location.href = this.spotifyAuthUrl;
     },

@@ -21,36 +21,29 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "SingleTrack",
-  props: {
-    token: {
-      type: String,
-    },
-    trackID: {
-      type: String,
-    }
-  },
   /**
     we'll need to grab the trackID and token from the store
    */
   data() {
     return {
       spotifyTrack: null,
-      spotifyTrackBaseUrl: `https://api.spotify.com/v1/tracks/${this.trackID}`
+        spotifyTrackBaseUrl: `https://api.spotify.com/v1/tracks/`
     };
   },
+  computed: {
+    ...mapGetters(["getSeedTrackID", "getSpotifyAccessKey"]),
+  },
   created() {
-    if (this.token) {
-      this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      this.getSpotifyTrack();
-    }
+    this.SpotifyApiInterface = new SpotifyApiInterface(this.getSpotifyAccessKey);
+    this.getSpotifyTrack();
   },
   methods: {
     async getSpotifyTrack() {
-       this.spotifyTrack = await this.SpotifyApiInterface.spotifyFetchRequest(this.spotifyTrackBaseUrl);
-
+       this.spotifyTrack = await this.SpotifyApiInterface.spotifyFetchRequest(`${this.spotifyTrackBaseUrl}${this.getSeedTrackID}`);
     }
   },
 };

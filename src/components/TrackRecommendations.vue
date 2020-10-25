@@ -1,6 +1,6 @@
 <template>
   <div id="track-recommnedations" class="panel" v-if="trackRecommendations">
-    <p class="panel-intro">These are the Spotify's recommendations based on your chosen artist, track, track-analysis and seed genres. You can preview the songs here, and if you like them... add them to your Spotify Library</p>
+    <p class="panel-intro">These are the Spotify's recommendations based on your chosen artist, track, track-analysis and seed genres. You can preview the songs here, and if you like them... you can add them to your Spotify library</p>
     <div class="track" v-bind:key="track.id" v-for="track in trackRecommendations.tracks">
       <div class="track__details">
         <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track's album from Spotify">
@@ -26,10 +26,6 @@ import { mapGetters } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "TrackRecommendations",
-  /**
-    we'll need to grab the token, trackID, artistID and genres
-    from the store
-   */
   data() {
     return {
       spotifyRecommendationsBaseUrl: `https://api.spotify.com/v1/recommendations`,
@@ -48,20 +44,20 @@ export default {
         valence: 0,
       },
       trackRecommendations: null,
-      genres: 'deep-house',
+      genres: null,
     };
   },
   computed: {
     ...mapGetters(["getSpotifyAccessKey", "getSeedTrackID", "getSeedArtistID", "getGenreOptions", "getNewTrackParams"])
   },
-  created() {
+  async created() {
     this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
       this.prepareNewTrackParams();
       this.prepareGenreParams();
     }
-    this.requestSpotifyTrackRecommendations();
+    await this.requestSpotifyTrackRecommendations();
   },
   methods: {
     prepareNewTrackParams() {
@@ -75,14 +71,16 @@ export default {
       delete this.newTrackParams.track_href;
       delete this.newTrackParams.type;
       delete this.newTrackParams.uri;
-      return this.newTrackParams.newTrackParams;
+      return this.newTrackParams;
     },
     prepareGenreParams() {
       this.genres = this.getGenreOptions;
       this.genres = this.genres.join(",");
+      return this.genres;
     },
     prepareRecommendationsUrl() {
       this.recommendationsUrl = `${this.spotifyRecommendationsBaseUrl}?seed_artists=${this.getSeedArtistID}&seed_genres=${this.genres}&seed_track=${this.getSeedTrackID}&target_acousticness=${this.newTrackParams.acousticness}&target_danceability=${this.newTrackParams.danceability}&target_energy=${this.newTrackParams.energy}&target_instrumentalness=${this.newTrackParams.instrumentalness}&target_key=${this.newTrackParams.key}&target_liveness=${this.newTrackParams.liveness}&target_loudness=${this.newTrackParams.loudness}&target_mode=${this.newTrackParams.mode}&target_speechiness=${this.newTrackParams.speechiness}&target_tempo=${this.newTrackParams.tempo}&target_valence=${this.newTrackParams.valence}`;
+      return this.recommendationsUrl;
     },
     async requestSpotifyTrackRecommendations() {
       this.prepareRecommendationsUrl();

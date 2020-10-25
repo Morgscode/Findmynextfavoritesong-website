@@ -3,7 +3,10 @@
     <form @submit.prevent>
       <p>Find new music based on your current top tracks on Spotify.</p>
       <p>You'll need to login via Spotify to Authorize this service.</p>
-      <button class="btn btn-primary login-btn" v-on:click.stop="spotifyRedirect()">
+      <button
+        class="btn btn-primary login-btn"
+        v-on:click.stop="spotifyRedirect()"
+      >
         Login via Spotify
       </button>
     </form>
@@ -16,18 +19,26 @@ export default {
   name: "LoginForm",
   data() {
     return {
+      env: "dev",
       spotifyClientID: `083f78d343ae4a98b5b4e843b87f7b61`,
-      redirectUrl: `http://localhost:8080/spotify-profile`,
+      redirectBaseUrl: `http://localhost:8080/`,
+      redirectPath: "spotify-profile",
       scopes: `user-read-email%20user-top-read%20user-library-read%20user-library-modify`,
       spotifyAuthUrl: ``,
     };
   },
   created() {
+    this.setRedirectUrl();
     this.resetSpotifyAccessKey();
-    this.spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${this.spotifyClientID}&redirect_uri=${this.redirectUrl}&scope=${this.scopes}&response_type=token`;
+    this.spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${this.spotifyClientID}&redirect_uri=${this.redirectBaseUrl}${this.redirectPath}&scope=${this.scopes}&response_type=token`;
   },
   methods: {
     ...mapMutations(["resetSpotifyAccessKey"]),
+    setRedirectUrl() {
+      return this.env === "dev"
+        ? (this.redirectBaseUrl = "http://localhost:8080/")
+        : (this.redirectBaseUrl = "https://findmynextfavoritesong.com/");
+    },
     spotifyRedirect() {
       window.location.href = this.spotifyAuthUrl;
     },

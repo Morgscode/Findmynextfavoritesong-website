@@ -13,19 +13,15 @@ export default {
   name: "TrackAnalysis",
   components: {
     SingleTrack,
-    SingleTrackAnalysis
+    SingleTrackAnalysis,
   },
   /**
     we'll need to grab the track ID, artistID, and token to the store
    */
   data() {
-    return {
-     
-    };
+    return {};
   },
-  created() {
-    
-  }
+  created() {},
 };
 </script>
 

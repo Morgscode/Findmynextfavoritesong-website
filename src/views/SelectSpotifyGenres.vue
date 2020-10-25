@@ -12,11 +12,10 @@ export default {
   name: "SelectSpotifyGenres",
   components: {
     SpotifyProfile,
-    SpotifyGenres
+    SpotifyGenres,
   },
 };
 </script>
 
 <style>
-
 </style>

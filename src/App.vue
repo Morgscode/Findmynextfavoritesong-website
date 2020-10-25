@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "App", 
+  name: "App",
 };
 </script>
 
@@ -104,7 +104,6 @@ body {
 
 .btn-primary {
   background-color: var(--spotify-green);
- 
 }
 
 .btn-secondary {
@@ -112,7 +111,9 @@ body {
   margin: 2rem;
 }
 
-.btn-alt, .btn-alt:focus, .btn-alt:active {
+.btn-alt,
+.btn-alt:focus,
+.btn-alt:active {
   background-color: transparent;
   border: 3px solid var(--turquoise);
   margin: 2rem;
@@ -153,5 +154,4 @@ form {
     padding: 1.5rem 1rem;
   }
 }
-
 </style>

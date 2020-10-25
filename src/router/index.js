@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home";
 import SpotifyUser from "../views/SpotifyUser";
 import TrackAnalysis from "../views/TrackAnalysis";
+import SpotifyGenres from "../views/SpotifyGenres";
 import SpotifyRecommendations from "../views/SpotifyRecommendations";
 
 Vue.use(VueRouter);
@@ -31,11 +32,16 @@ const routes = [
     them in the recommendations route
    */
   {
+    path: "/spotify-genres",
+    name: "SpotifyGenres",
+    component: SpotifyGenres,
+  },
+  {
     path: "/track-recommendations",
     name: "SpotifyRecommendations",
     component: SpotifyRecommendations,
   },
-]; 
+];
 
 const router = new VueRouter({
   mode: "history",

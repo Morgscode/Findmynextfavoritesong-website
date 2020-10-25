@@ -57,32 +57,22 @@
         <small class="slider__description">valence describes the muscial 'positivity' of the track. A higher valence is a happier song</small>
         <input class="slider" type="range" min="0" max="1" step="0.001" v-model="newTrackParams.valence" />
       </div>
-      <button class="btn btn-primary" v-on:click.stop="recommendationsRedirect(token, trackID, artistID, newTrackParams)">Find me songs with these attributes</button>
+      <button class="btn btn-primary" v-on:click.stop="genresRedirect(newTrackParams)">Select preferred genres</button>
     </form>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex"; 
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "SingleTrack",
-  props: {
-    token: {
-      type: String,
-    },
-    trackID: {
-      type: String,
-    },
-    artistID: {
-      type: String,
-    },
-  },
   /**
     we'll need to grab the token and trackID from the store
    */
   data() {
     return {
-      spotifyTrackAnalysisBaseUrl: `https://api.spotify.com/v1/audio-features/${this.trackID}`,
+      spotifyTrackAnalysisBaseUrl: `https://api.spotify.com/v1/audio-features/`,
       spotifyTrackAnalysis: null,
       newTrackParams: {
         acousticness: 0,
@@ -99,15 +89,20 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters(["getSpotifyAccessKey", "getSeedTrackID"])
+  },
   created() {
+    this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
       this.getSpotifyTrackAnalysis();
     }
   },
   methods: {
+    ...mapMutations(["storeNewTrackParams"]),
     async getSpotifyTrackAnalysis() {
-       this.spotifyTrackAnalysis = await this.SpotifyApiInterface.spotifyFetchRequest(this.spotifyTrackAnalysisBaseUrl);
+       this.spotifyTrackAnalysis = await this.SpotifyApiInterface.spotifyFetchRequest(`${this.spotifyTrackAnalysisBaseUrl}${this.getSeedTrackID}`);
        this.bindInitialTrackAnalysis();
     },
     bindInitialTrackAnalysis() {
@@ -115,30 +110,10 @@ export default {
     },
     /**
       we'll need to persist the newTrackParams to the store 
-      and copy the track analysis response to this stored item
-      we can then mutate this as needed in the store
      */
-    recommendationsRedirect(token, trackID, artistID,trackParams) {
-      this.$router.push(
-        {
-          path: 'track-recommendations', 
-          query: {
-            token: token,
-            trackID: trackID,
-            artistID: artistID,
-            acousticness: trackParams.acousticness, 
-            danceability: trackParams.danceability, 
-            energy: trackParams.energy, 
-            instrumentalness: trackParams.instrumentalness, 
-            key: trackParams.key, 
-            liveness: trackParams.liveness, 
-            loudness: trackParams.loudness, 
-            mode: trackParams.mode, 
-            speechiness: trackParams.speechiness, 
-            tempo: trackParams.tempo, 
-            valence: trackParams.valence,
-            }
-          });
+    genresRedirect(trackParams) {
+      this.storeNewTrackParams(trackParams);
+      this.$router.push('spotify-genres');
     },
    },
 };

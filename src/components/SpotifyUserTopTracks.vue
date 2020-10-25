@@ -18,7 +18,7 @@
             <div v-else>There is no audio preview available for {{ track.name }} </div>
             <div>
               <button class="btn btn-primary" v-on:click.stop="musicAnalysisRedirect(track.id, track.artists[0].id)">
-                Find music similar to <span class="track__name"> {{ track.name }} </span>
+                Find music similar to &nbsp;<span class="track__name">&nbsp;{{ track.name }} </span>
               </button>
             </div>
           </div>

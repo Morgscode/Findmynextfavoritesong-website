@@ -56,8 +56,9 @@ body {
 }
 
 .btn {
-  display: inline-block;
-  padding: 12px 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 54px;
   width: 300px;
   border: none;
@@ -125,6 +126,11 @@ form {
 
   .container {
     max-width: 100%;
+  }
+
+  .panel {
+    margin: 1rem auto;
+    padding: 1.5rem 1rem;
   }
 }
 

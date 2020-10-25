@@ -25,6 +25,7 @@ export default {
    */
   data() {
     return {
+      token: null,
       spotifyUserProfile: null,
       SpotifyApiInterface: null,
       displayErrorMessage: false,
@@ -37,10 +38,10 @@ export default {
     ...mapGetters(["getSpotifyAccessKey"])
   },
   async created() {
-    this.token = await this.getSpotifyAccessKey;
+    this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      this.spotifyUserProfile = await this.getSpotifyUserProfile();
+     await this.getSpotifyUserProfile();
       
         if (this.spotifyUserProfile.error) {
           this.displayErrorMessage = true;
@@ -53,8 +54,8 @@ export default {
   },
   updated() {},
   methods: {
-    getSpotifyUserProfile() {
-      return this.SpotifyApiInterface.spotifyFetchRequest(
+    async getSpotifyUserProfile() {
+      this.spotifyUserProfile = await this.SpotifyApiInterface.spotifyFetchRequest(
         "https://api.spotify.com/v1/me"
       );
     },

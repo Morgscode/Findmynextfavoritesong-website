@@ -92,11 +92,11 @@ export default {
   computed: {
     ...mapGetters(["getSpotifyAccessKey", "getSeedTrackID"])
   },
-  created() {
+  async created() {
     this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      this.getSpotifyTrackAnalysis();
+      await this.getSpotifyTrackAnalysis();
     }
   },
   methods: {

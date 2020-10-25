@@ -21,9 +21,7 @@ export default {
       trackID: null,
     };
   },
-  created() {
-    
-  }
+  created() {},
 };
 </script>
 

@@ -16,10 +16,23 @@ class SpotifyApiInterface {
     return fetchOptions;
   }
 
-  spotifyFetchRequest(url) {
+  async spotifyGetFetchRequest(url) {
     const options = this.setSpotifyFetchOptions();
 
-    const response = fetch(url, options)
+    const response = await fetch(url, options)
+      .then((response) => response.json())
+      //.then((data) => console.log(data))
+      // let's handle the error appropriately
+      .catch((err) => console.log(err));
+    return response;
+  }
+
+  async spotifyPutFetchRequest(url) {
+    let options = this.setSpotifyFetchOptions();
+    options.method = "PUT";
+    console.log(url);
+    console.log(options);
+    const response = await fetch(url, options)
       .then((response) => response.json())
       //.then((data) => console.log(data))
       // let's handle the error appropriately

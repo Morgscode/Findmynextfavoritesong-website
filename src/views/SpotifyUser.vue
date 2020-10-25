@@ -24,9 +24,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(
-      ["setSpotifyAccessKey"],
-    ),
+    ...mapMutations(["setSpotifyAccessKey"]),
     manageUrlHash(hash) {
       if (hash && typeof hash === "string") {
         this.urlHash = hash;

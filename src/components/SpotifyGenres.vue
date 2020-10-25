@@ -1,10 +1,13 @@
 <template>
   <div id="spotify-genres" class="panel" v-if="spotifyGenreOptions">
-    <form class="genre-form">
-      <div class="genre-form-group" v-for="genre in spotifyGenreOptions" v-bind:key="genre">
-        <label v-bind:for="genre">{{ genre }}</label>
-        <input type="checkbox" v-bind:name="genre" v-bind:id="genre" v-bind:value="genre" v-bind:disbaled="checkBoxDisabled">
+    <form class="genre-form" @submit.prevent>
+      <div class="genre-form-options">
+        <div class="genre-form-group" v-for="genre in spotifyGenreOptions" v-bind:key="genre">
+          <label v-bind:for="genre">{{ genre }}</label>
+          <input type="checkbox" v-bind:name="genre" v-bind:id="genre" v-bind:value="genre" v-bind:disabled="checkBoxDisabled" v-model="genreOptions">
+        </div>
       </div>
+      <button class="btn btn-primary" v-bind:disabled="submitButtonDisabled" v-on:click.prevent="recommendationsRedirect()">Find me new music based on these genres</button>
     </form>
   </div>
 </template>
@@ -22,6 +25,7 @@ export default {
       spotifyGenreOptions: null,
       SpotifyApiInterface: null,
       checkBoxDisabled: false,
+      submitButtonDisabled: true,
       spotifyGenresBaseUrl: 'https://api.spotify.com/v1/recommendations/available-genre-seeds',
     }
   },
@@ -36,13 +40,18 @@ export default {
     }
   },
   updated() {
-    return (this.genreOptions.length >= 3) ? this.checkBoxDisabled = true : this.checkBoxDisabled = false;
+    this.genreOptions.length >= 3 ? this.checkBoxDisabled = true : this.checkBoxDisabled = false;
+    this.genreOptions.length <= 0 ? this.submitButtonDisabled = true : this.submitButtonDisabled = false;
   },
   methods: {
     ...mapMutations(["storeNewGenreOptions"]),
     async getSpotifyGenreOptions() {
       const genresResponse = await this.SpotifyApiInterface.spotifyFetchRequest(this.spotifyGenresBaseUrl);
       this.spotifyGenreOptions = genresResponse.genres;
+    },
+    recommendationsRedirect() {
+      this.storeNewGenreOptions(this.genreOptions);
+      this.$router.push("track-recommendations")
     }
   }
 }
@@ -50,10 +59,11 @@ export default {
 
 <style scoped>
 
-.genre-form {
+.genre-form-options {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .genre-form-group {
@@ -71,13 +81,19 @@ export default {
 }
 
 @media only screen and (max-width: 768px) {
-  .genre-form {
+  .genre-form-options {
     grid-template-columns: auto auto auto;
   }
 }
 
 @media only screen and (max-width: 576px) {
-  .genre-form {
+  .genre-form-options {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .genre-form-options {
     grid-template-columns: auto;
   }
 }

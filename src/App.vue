@@ -31,8 +31,8 @@ export default {
 
 html,
 body {
-  min-width: 100vw;
-  max-width: 100vw;
+  min-width: 100%;
+  max-width: 100%;
   overflow-x: hidden;
   min-height: 100vh;
   font-size: 62.5%;
@@ -51,7 +51,7 @@ body {
   text-align: center;
   color: #2c3e50;
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100%;
   font-size: 1.6rem;
 }
 
@@ -70,9 +70,19 @@ body {
   font-weight: 800;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+}
+
 .btn:hover {
+  cursor: pointer;
   transform: translateY(-6px) scale(1);
   box-shadow: 0px 10px 20px -10px #3a3a3a;
+}
+
+.btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .btn:focus {

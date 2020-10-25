@@ -23,8 +23,8 @@
             </div>
           </div>
         </div>
-        <button v-if="spotifyUserTopTracks.previous" class="btn btn-alt" v-on:click.stop="loadPreviousSpotifyUserTopTracks()">See previous tracks</button>
-        <button v-if="spotifyUserTopTracks.next" class="btn btn-secondary" v-on:click.stop="loadMoreSpotifyUserTopTracks()">load more of your top tracks</button>
+        <button v-if="spotifyUserTopTracks.previous" class="btn btn-alt" v-on:click.stop="loadPreviousSpotifyUserTopTracks()" v-scroll-to="'#user-top-tracks'">See previous tracks</button>
+        <button v-if="spotifyUserTopTracks.next" class="btn btn-secondary" v-on:click.stop="loadMoreSpotifyUserTopTracks()" v-scroll-to="'#user-top-tracks'">load more of your top tracks</button>
       </div>
     </div>
   </div>

@@ -95,7 +95,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   .tracks__header {
     font-size: 22px;
     margin-bottom: 3rem;

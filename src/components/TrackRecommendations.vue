@@ -1,10 +1,27 @@
 <template>
   <div id="track-recommnedations" class="panel" v-if="trackRecommendations">
-    <p>recommendations works!</p>
+    <div class="track" v-bind:key="track.id" v-for="track in trackRecommendations.tracks">
+      <div class="track__details">
+        <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track's album from Spotify">
+        <p class="track__name"> {{ track.name }} </p>
+        <p class="track__artist"> {{ track.artists[0].name }} </p>
+      </div>
+      <div class="track__options">
+          <div class="spotify-audio-preview" v-if="track.preview_url">
+              <audio controls>
+                <source v-bind:src="track.preview_url" type="audio/mpeg" />
+              </audio>
+            </div>
+            <div v-else>There is no audio preview available for {{ track.name }} </div>
+            <div>
+            </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "TrackRecommendations",
@@ -33,22 +50,39 @@ export default {
       genres: 'deep-house',
     };
   },
+  computed: {
+    ...mapGetters(["getSpotifyAccessKey", "getSeedTrackID", "getSeedArtistID", "getGenreOptions", "getNewTrackParams"])
+  },
   created() {
-    this.prepareNewTrackParams();
+    this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
+      this.prepareNewTrackParams();
+      this.prepareGenreParams();
     }
     this.requestSpotifyTrackRecommendations();
   },
   methods: {
     prepareNewTrackParams() {
-      this.newTrackParams = {...this.$route.query};
+      this.newTrackParams = this.getNewTrackParams;
       delete this.newTrackParams.token;
       delete this.newTrackParams.trackID;
-      return this.newTrackParams;
+      delete this.newTrackParams.analysis_url;
+      delete this.newTrackParams.duration_ms;
+      delete this.newTrackParams.id;
+      delete this.newTrackParams.time_signature;
+      delete this.newTrackParams.track_href;
+      delete this.newTrackParams.type;
+      delete this.newTrackParams.uri;
+      return this.newTrackParams.newTrackParams;
+    },
+    prepareGenreParams() {
+      this.genres = this.getGenreOptions;
+      this.genres = this.genres.join(",");
+      console.log(this.genres);
     },
     prepareRecommendationsUrl() {
-      this.recommendationsUrl = `${this.spotifyRecommendationsBaseUrl}?seed_artists=${this.artistID}&seed_genres=${this.genres}&seed_track=${this.trackID}&target_acousticness=${this.newTrackParams.acousticness}&target_danceability=${this.newTrackParams.danceability}&target_energy=${this.newTrackParams.energy}&target_instrumentalness=${this.newTrackParams.instrumentalness}&target_key=${this.newTrackParams.key}&target_liveness=${this.newTrackParams.liveness}&target_loudness=${this.newTrackParams.loudness}&target_mode=${this.newTrackParams.mode}&target_speechiness=${this.newTrackParams.speechiness}&target_tempo=${this.newTrackParams.tempo}&target_valence=${this.newTrackParams.valence}`;
+      this.recommendationsUrl = `${this.spotifyRecommendationsBaseUrl}?seed_artists=${this.getSeedArtistID}&seed_genres=${this.genres}&seed_track=${this.getSeedTrackID}&target_acousticness=${this.newTrackParams.acousticness}&target_danceability=${this.newTrackParams.danceability}&target_energy=${this.newTrackParams.energy}&target_instrumentalness=${this.newTrackParams.instrumentalness}&target_key=${this.newTrackParams.key}&target_liveness=${this.newTrackParams.liveness}&target_loudness=${this.newTrackParams.loudness}&target_mode=${this.newTrackParams.mode}&target_speechiness=${this.newTrackParams.speechiness}&target_tempo=${this.newTrackParams.tempo}&target_valence=${this.newTrackParams.valence}`;
     },
     async requestSpotifyTrackRecommendations() {
       this.prepareRecommendationsUrl();

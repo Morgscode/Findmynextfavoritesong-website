@@ -3,7 +3,7 @@ const state = {
     token: null,
     artistID: null,
     trackID: null,
-    trackAnalysis: {
+    trackParams: {
       acousticness: null,
       danceability: null,
       energy: null,
@@ -33,6 +33,9 @@ const getters = {
   getGenreOptions: (state) => {
     return state.SpotifyUserState.genreOptions;
   },
+  getNewTrackParams: (state) => {
+    return state.SpotifyUserState.trackParams;
+  },
 };
 
 const mutations = {
@@ -49,7 +52,7 @@ const mutations = {
     return (state.SpotifyUserState.artistID = artistID);
   },
   storeNewTrackParams: (state, newTrackParams) => {
-    return (state.SpotifyUserState.trackAnalysis = newTrackParams);
+    return (state.SpotifyUserState.trackParams = newTrackParams);
   },
   storeNewGenreOptions: (state, options) => {
     return (state.SpotifyUserState.genreOptions = options);

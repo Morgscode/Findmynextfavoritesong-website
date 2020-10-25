@@ -50,6 +50,8 @@ export default {
       this.spotifyWebplayerUrl = this.spotifyUserProfile.external_urls.spotify;
       this.spotifyDisplayName = this.spotifyUserProfile.display_name;
       this.spotifyFollowers = this.spotifyUserProfile.followers.total;
+    } else {
+      this.displayErrorMessage = true;
     }
   },
   updated() {},

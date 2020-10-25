@@ -8,17 +8,6 @@
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "TrackRecommendations",
-  props: {
-    token: {
-      type: String,
-    },
-    trackID: {
-      type: String,
-    },
-    artistID: {
-      type: String,
-    }
-  },
   /**
     we'll need to grab the token, trackID, artistID and genres
     from the store

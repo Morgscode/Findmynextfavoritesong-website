@@ -30,6 +30,9 @@ const getters = {
   getSeedArtistID: (state) => {
     return state.SpotifyUserState.artistID;
   },
+  getGenreOptions: (state) => {
+    return state.SpotifyUserState.genreOptions;
+  },
 };
 
 const mutations = {
@@ -47,6 +50,9 @@ const mutations = {
   },
   storeNewTrackParams: (state, newTrackParams) => {
     return (state.SpotifyUserState.trackAnalysis = newTrackParams);
+  },
+  storeNewGenreOptions: (state, options) => {
+    return (state.SpotifyUserState.genreOptions = options);
   },
 };
 

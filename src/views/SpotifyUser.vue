@@ -37,7 +37,7 @@ export default {
         return false;
       }
     },
-    async setNewSpotifyAccessToken() {
+    setNewSpotifyAccessToken() {
       if (
         typeof this.urlHashArray[0][0] === "string" &&
         typeof this.urlHashArray[0][1] === "string" &&
@@ -46,7 +46,7 @@ export default {
         /**
           this is where we will push the token to the store
          */
-       return await this.setSpotifyAccessKey(this.urlHashArray[0][1]);
+        this.setSpotifyAccessKey(this.urlHashArray[0][1]);
       } else {
         return false;
       }

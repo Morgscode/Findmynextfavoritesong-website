@@ -5,7 +5,7 @@
           <img src="../assets/user.svg" class="user-icon" />
           <p class="profile__user-details">Your spotify ID: <span id="spotify-user-id">{{ spotifyDisplayName }}</span></p>
           <p class="profile__user-details">Followers: {{ spotifyFollowers }}</p>
-          <a target="_blank" class="btn btn-alt" v-bind:href="spotifyWebplayerUrl">open your Spotify webplayer</a>
+          <button class="btn btn-alt"><a target="_blank"  v-bind:href="spotifyWebplayerUrl">open your Spotify webplayer</a></button>
         </div> 
       </div>
       <div v-else id="error-message" class="panel">

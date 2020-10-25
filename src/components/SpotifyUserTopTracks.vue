@@ -3,6 +3,7 @@
     <div v-if="!tokenHasExpired">
       <div class="panel tracks" v-if="spotifyTracks">
         <p class="tracks__header">Your favourite tracks on Spotify right now</p>
+        <p class="panel-intro">These are your current top tracks on Spotify based on your user analytics. Find new music similar to these tracks by hitting the 'Find me music simlar to' button in the respective track section</p>
         <div class="track" v-bind:key="track.id" v-for="track in spotifyTracks">
           <div class="track__details">
                <img class="track__image" v-bind:src="track.album.images[0].url" alt="An image for the current track's album from Spotify">

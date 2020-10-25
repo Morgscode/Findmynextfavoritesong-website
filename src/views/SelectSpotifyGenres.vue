@@ -1,5 +1,5 @@
 <template>
-  <div id="spotify-genres">
+  <div id="spotify-genres" class="container">
     <SpotifyProfile />
     <SpotifyGenres />
   </div>

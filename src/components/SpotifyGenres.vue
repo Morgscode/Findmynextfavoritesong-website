@@ -1,5 +1,6 @@
 <template>
   <div id="spotify-genres" class="panel" v-if="spotifyGenreOptions">
+    <p class="panel-intro">These are the seed genres that Spotify provides. Select up to 3 and then hit the 'Find me new music based on these genres' button at the bottom of the panel.</p>
     <form class="genre-form" @submit.prevent>
       <div class="genre-form-options">
         <div class="genre-form-group" v-for="genre in spotifyGenreOptions" v-bind:key="genre">
@@ -7,7 +8,7 @@
           <input type="checkbox" v-bind:name="genre" v-bind:id="genre" v-bind:value="genre" v-bind:disabled="checkBoxDisabled" v-model="genreOptions">
         </div>
       </div>
-      <button class="btn btn-primary" v-bind:disabled="submitButtonDisabled" v-on:click.prevent="recommendationsRedirect()">Find me new music based on these genres</button>
+      <button id="submit-genres" class="btn btn-primary" v-bind:disabled="submitButtonDisabled" v-on:click.prevent="recommendationsRedirect()">Find me new music based on these genres</button>
     </form>
   </div>
 </template>
@@ -15,6 +16,8 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import SpotifyApiInterface from "../services/SpotifyApiInterface";
+import VueScrollTo from "vue-scrollto";
+
 
 export default {
   name: "SpotifyUserProfile",
@@ -39,9 +42,12 @@ export default {
       await this.getSpotifyGenreOptions();
     }
   },
-  updated() {
-    this.genreOptions.length >= 3 ? this.checkBoxDisabled = true : this.checkBoxDisabled = false;
+  beforeUpdate() {
     this.genreOptions.length <= 0 ? this.submitButtonDisabled = true : this.submitButtonDisabled = false;
+    if (this.genreOptions.length >= 3) {
+      this.checkBoxDisabled = true
+      VueScrollTo.scrollTo("#submit-genres");
+    }
   },
   methods: {
     ...mapMutations(["storeNewGenreOptions"]),
@@ -58,6 +64,10 @@ export default {
 </script>
 
 <style scoped>
+
+.genres-intro {
+  margin-bottom: 3rem;
+}
 
 .genre-form-options {
   display: grid;

@@ -56,15 +56,20 @@ body {
 }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-block;
   height: 54px;
   width: 300px;
   border: none;
   text-decoration: none;
   border-radius: 50px;
   transition: all 0.3s ease-out;
+  outline: none;
+  color: #fff;
+  font-weight: 800;
+}
+
+.btn a {
+  text-decoration: none;
   outline: none;
   color: #fff;
   font-weight: 800;
@@ -118,6 +123,11 @@ body {
   padding: 3rem;
   max-width: 100%;
   margin: 3rem auto;
+}
+
+.panel-intro {
+  margin-bottom: 3rem;
+  text-align: left;
 }
 
 .container {

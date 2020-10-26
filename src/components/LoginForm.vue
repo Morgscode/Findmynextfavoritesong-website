@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     ...mapMutations(["resetSpotifyAccessKey"]),
-    setRedirectBasseUrl() {
+    setRedirectBaseUrl() {
       return this.env === "dev"
         ? (this.redirectBaseUrl = "http://localhost:8080/")
         : (this.redirectBaseUrl =

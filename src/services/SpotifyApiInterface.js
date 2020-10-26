@@ -30,8 +30,6 @@ class SpotifyApiInterface {
   async spotifyPutFetchRequest(url) {
     let options = this.setSpotifyFetchOptions();
     options.method = "PUT";
-    console.log(url);
-    console.log(options);
     const response = await fetch(url, options)
       .then((response) => response.json())
       //.then((data) => console.log(data))

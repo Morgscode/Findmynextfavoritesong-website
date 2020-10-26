@@ -19,7 +19,7 @@ export default {
   name: "LoginForm",
   data() {
     return {
-      env: "dev",
+      env: "prod",
       spotifyClientID: `083f78d343ae4a98b5b4e843b87f7b61`,
       redirectBaseUrl: `http://localhost:8080/`,
       redirectPath: "spotify-profile",
@@ -28,16 +28,17 @@ export default {
     };
   },
   created() {
-    this.setRedirectUrl();
+    this.setRedirectBaseUrl();
     this.resetSpotifyAccessKey();
     this.spotifyAuthUrl = `https://accounts.spotify.com/authorize?client_id=${this.spotifyClientID}&redirect_uri=${this.redirectBaseUrl}${this.redirectPath}&scope=${this.scopes}&response_type=token`;
   },
   methods: {
     ...mapMutations(["resetSpotifyAccessKey"]),
-    setRedirectUrl() {
+    setRedirectBasseUrl() {
       return this.env === "dev"
         ? (this.redirectBaseUrl = "http://localhost:8080/")
-        : (this.redirectBaseUrl = "https://findmynextfavoritesong.com/");
+        : (this.redirectBaseUrl =
+            "https://findmynextfavouritesong.netlify.app/");
     },
     spotifyRedirect() {
       window.location.href = this.spotifyAuthUrl;

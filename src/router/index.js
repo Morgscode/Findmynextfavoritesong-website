@@ -41,6 +41,10 @@ const routes = [
     name: "SpotifyRecommendations",
     component: SpotifyRecommendations,
   },
+  {
+    path: "/*",
+    component: Home,
+  },
 ];
 
 const router = new VueRouter({

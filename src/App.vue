@@ -202,6 +202,10 @@ form {
   cursor: pointer;
 }
 
+.text-link {
+  color: var(--green-accent);
+}
+
 @media only screen and (min-width: 1201px) {
   .track {
     grid-template-columns: repeat(2, 1fr);

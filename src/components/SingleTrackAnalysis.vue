@@ -9,7 +9,10 @@
     <form class="track-analysis-form" @submit.prevent>
       <div class="field-group">
         <p class="slider-label">
-          acousticness: {{ newTrackParams.acousticness }}
+          acousticness:
+          <span class="track-attribute-value">{{
+            newTrackParams.acousticness
+          }}</span>
         </p>
         <small class="slider__description"
           >A measurement of wether or not the track is acoustic</small
@@ -25,7 +28,10 @@
       </div>
       <div class="field-group">
         <p class="slider-label">
-          danceability: {{ newTrackParams.danceability }}
+          danceability:
+          <span class="track-attribute-value">{{
+            newTrackParams.danceability
+          }}</span>
         </p>
         <small class="slider__description"
           >A measurement of how suitable the song is for dancing</small
@@ -40,7 +46,10 @@
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">energy: {{ newTrackParams.energy }}</p>
+        <p class="slider-label">
+          energy:
+          <span class="track-attribute-value">{{ newTrackParams.energy }}</span>
+        </p>
         <small class="slider__description"
           >A measurement of the tracks intensity and activity</small
         >
@@ -55,7 +64,10 @@
       </div>
       <div class="field-group">
         <p class="slider-label">
-          instrumentalness {{ newTrackParams.instrumentalness }}
+          instrumentalness
+          <span class="track-attriute-value">{{
+            newTrackParams.instrumentalness
+          }}</span>
         </p>
         <small class="slider__description"
           >Predicts wether or not the track contains vocals</small
@@ -70,12 +82,16 @@
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">key: {{ newTrackParams.key }}</p>
+        <p class="slider-label">
+          key:
+          <span class="track-attribute-value">{{ newTrackParams.key }}</span>
+        </p>
         <small class="slider__description"
           >A reference to which key the track is in. A reference to the pitch
           class notation scale (0 to 11).&nbsp;<a
             href="https://en.wikipedia.org/wiki/Pitch_class#Other_ways_to_label_pitch_classes"
             target="_blank"
+            class="text-link"
             >see the guide</a
           ></small
         >
@@ -89,7 +105,12 @@
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">liveliness: {{ newTrackParams.liveliness }}</p>
+        <p class="slider-label">
+          liveness:
+          <span class="track-attribute-value">{{
+            newTrackParams.liveness
+          }}</span>
+        </p>
         <small class="slider__description"
           >Detects the presence of an audience in the in the track's
           recording</small
@@ -100,11 +121,16 @@
           min="0"
           max="1"
           step="0.001"
-          v-model="newTrackParams.liveliness"
+          v-model="newTrackParams.liveness"
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">loudness: {{ newTrackParams.loudness }}</p>
+        <p class="slider-label">
+          loudness:
+          <span class="track-attribute-value">{{
+            newTrackParams.loudness
+          }}</span>
+        </p>
         <small class="slider__description"
           >The overall loudness of the track in decibels (dB)</small
         >
@@ -118,7 +144,10 @@
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">mode: {{ newTrackParams.mode }}</p>
+        <p class="slider-label">
+          mode:
+          <span class="track-attribute-value">{{ newTrackParams.mode }}</span>
+        </p>
         <small class="slider__description"
           >Indicates the modality of the track (minor to major)</small
         >
@@ -133,7 +162,10 @@
       </div>
       <div class="field-group">
         <p class="slider-label">
-          speechiness: {{ newTrackParams.speechiness }}
+          speechiness:
+          <span class="track-attribute-value">{{
+            newTrackParams.speechiness
+          }}</span>
         </p>
         <small class="slider__description"
           >Detects the presence of spoken words in the track</small
@@ -148,7 +180,10 @@
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">tempo: {{ newTrackParams.tempo }}</p>
+        <p class="slider-label">
+          tempo:
+          <span class="track-attribute-value">{{ newTrackParams.tempo }}</span>
+        </p>
         <small class="slider__description"
           >The overall tempo of the track in beats per minute (BPM)</small
         >
@@ -162,7 +197,12 @@
         />
       </div>
       <div class="field-group">
-        <p class="slider-label">valence: {{ newTrackParams.valence }}</p>
+        <p class="slider-label">
+          valence:
+          <span class="track-attribute-value">{{
+            newTrackParams.valence
+          }}</span>
+        </p>
         <small class="slider__description"
           >valence describes the muscial 'positivity' of the track. A higher
           valence is a happier song</small
@@ -229,6 +269,7 @@ export default {
       this.spotifyTrackAnalysis = await this.SpotifyApiInterface.spotifyGetFetchRequest(
         `${this.spotifyTrackAnalysisBaseUrl}${this.getSeedTrackID}`
       );
+      console.log(this.spotifyTrackAnalysis);
       this.bindInitialTrackAnalysis();
     },
     bindInitialTrackAnalysis() {
@@ -265,5 +306,9 @@ export default {
   font-size: 15px;
   display: block;
   margin-bottom: 3rem;
+}
+
+.track-attribute-value {
+  color: var(--spotify-green);
 }
 </style>

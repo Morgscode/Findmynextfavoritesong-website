@@ -95,9 +95,6 @@ export default {
   created() {},
   mounted() {
     this.domRef = this.$refs[`playerID-${this.track.id}`];
-    if (this.domRef) {
-      console.log(this.domRef.paused);
-    }
   },
   methods: {
     ...mapMutations(["setCurrentSampleTrack"]),
@@ -105,6 +102,7 @@ export default {
       const sampleTrack = this.getCurrentSampleTrack;
       if (sampleTrack) {
         sampleTrack.pause();
+        return (sampleTrack.paused = true);
       }
     },
     play() {

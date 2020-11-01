@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home";
-import SpotifyUser from "../views/SpotifyUser";
+import SpotifyTracks from "../views/SpotifyTracks";
 import TrackAnalysis from "../views/TrackAnalysis";
 import SelectSpotifyGenres from "../views/SelectSpotifyGenres";
 import SpotifyRecommendations from "../views/SpotifyRecommendations";
@@ -15,9 +15,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/spotify-profile",
-    name: "SpotifyUser",
-    component: SpotifyUser,
+    path: "/spotify-tracks",
+    name: "SpotifyTracks",
+    component: SpotifyTracks,
   },
   {
     path: "/track-analysis",

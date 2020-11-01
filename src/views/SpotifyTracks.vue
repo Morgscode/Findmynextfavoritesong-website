@@ -11,7 +11,7 @@ import SpotifyProfile from "../components/SpotifyProfile.vue";
 import SpotifyUserTopTracks from "../components/SpotifyUserTopTracks";
 
 export default {
-  name: "SpotifyUser",
+  name: "SpotifyTracks",
   components: {
     SpotifyProfile,
     SpotifyUserTopTracks,

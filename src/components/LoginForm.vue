@@ -22,7 +22,7 @@ export default {
       env: "prod",
       spotifyClientID: `083f78d343ae4a98b5b4e843b87f7b61`,
       redirectBaseUrl: `http://localhost:8080/`,
-      redirectPath: "spotify-profile",
+      redirectPath: "spotify-tracks",
       scopes: `user-read-email%20user-top-read%20user-library-read%20user-library-modify`,
       spotifyAuthUrl: ``,
     };

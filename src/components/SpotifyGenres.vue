@@ -169,15 +169,15 @@ export default {
 
 /* Style the checkmark/indicator */
 .checkbox-container .checkmark:after {
-  left: 9px;
-  top: 5px;
-  width: 5px;
-  height: 10px;
+  top: 10px;
+  left: 5px;
+  width: 40%;
+  height: 75%;
   border: solid white;
   border-width: 0 3px 3px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg) translate(-50%, -50%);
+  -ms-transform: rotate(45deg) translate(-50%, -50%);
+  transform: rotate(45deg) translate(-50%, -50%);
 }
 
 @media only screen and (max-width: 991px) {

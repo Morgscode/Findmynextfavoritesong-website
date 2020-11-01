@@ -121,8 +121,10 @@ export default {
     managePlayState() {
       if (this.isPaused) {
         this.play();
+        this.isPaused = false;
       } else {
         this.pause();
+        this.isPaused = true;
       }
     },
     toggleMute() {

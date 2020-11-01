@@ -19,6 +19,8 @@ export default {
   --green-accent: #27ae60;
   --turquoise: #1abc9c;
   --border: 2px solid var(--spotify-green);
+  --darkBG1: rgba(47, 54, 64, 1);
+  --darkBG2: rgba(53, 59, 72, 1);
 }
 
 *,
@@ -37,11 +39,7 @@ body {
   min-height: 100vh;
   font-size: 62.5%;
   background-color: #3a3a3a;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(47, 54, 64, 1),
-    rgba(53, 59, 72, 1)
-  );
+  background-image: linear-gradient(to bottom, var(--darkBG1), var(--darkBG2));
 }
 
 #app {
@@ -138,6 +136,82 @@ body {
 
 form {
   max-width: 100%;
+}
+
+.tracks__header {
+  font-size: 22px;
+  margin-bottom: 3rem;
+}
+
+.track {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border-bottom: var(--border);
+  padding-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.track__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 22px;
+}
+
+.track__image {
+  max-width: 400px;
+  margin-bottom: 3rem;
+}
+
+.track__name {
+  display: inline-block;
+}
+
+.track__details .track__name {
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 1201px) {
+  .track {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+  }
+
+  .track:not(first-child) {
+    margin-top: 3rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .track {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+  }
+
+  .track > * {
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .track__image {
+    max-width: 80%;
+  }
+
+  .track {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .track > *:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .track > *:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
 }
 
 @media only screen and (max-width: 576px) {

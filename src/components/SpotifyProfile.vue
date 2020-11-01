@@ -3,11 +3,16 @@
     <div class="panel" v-if="!displayErrorMessage">
       <div class="profile">
         <img src="../assets/user.svg" class="user-icon" />
-        <p class="profile__user-details">
-          Your spotify ID:
-          <span id="spotify-user-id">{{ spotifyDisplayName }}</span>
-        </p>
-        <p class="profile__user-details">Followers: {{ spotifyFollowers }}</p>
+        <div>
+          <p class="profile__user-details">
+            Your spotify ID:
+            <span id="spotify-user-id">{{ spotifyDisplayName }}</span>
+          </p>
+          <p class="profile__user-details" v-if="spotifyFollowers > 0">
+            Followers:
+            <span id="spotify-follower-count">{{ spotifyFollowers }}</span>
+          </p>
+        </div>
         <button class="btn btn-alt">
           <a target="_blank" v-bind:href="spotifyWebplayerUrl"
             >open your Spotify webplayer</a
@@ -79,6 +84,17 @@ export default {
 </script>
 
 <style>
+#spotify-user-id {
+  color: var(--spotify-green);
+  font-weight: 800;
+  font-size: 20px;
+}
+
+#spotify-follower-count {
+  color: var(--spotify-green);
+  font-weight: 800;
+  font-size: 20px;
+}
 .user-icon {
   max-width: 150px;
 }
@@ -89,13 +105,18 @@ export default {
   justify-items: center;
 }
 
+.profile__user-details {
+  padding: 1rem;
+  text-align: center;
+}
+
 .profile .btn-alt {
   margin: 0;
 }
 
 @media only screen and (min-width: 768px) {
   .profile {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
   }
 }
 

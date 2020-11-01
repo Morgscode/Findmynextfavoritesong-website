@@ -13,13 +13,8 @@
         </div>
       </div>
       <div class="track__options">
-        <div class="spotify-audio-preview" v-if="spotifyTrack.preview_url">
-          <audio controls>
-            <source v-bind:src="spotifyTrack.preview_url" type="audio/mpeg" />
-          </audio>
-        </div>
-        <div v-else>
-          There is no audio preview available for {{ spotifyTrack.name }}
+        <div class="spotify-audio-preview">
+          <AudioPlayer v-bind:track="spotifyTrack" />
         </div>
       </div>
     </div>
@@ -29,8 +24,10 @@
 <script>
 import { mapGetters } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
+import AudioPlayer from "./AudioPlayer";
 export default {
   name: "SingleTrack",
+  components: { AudioPlayer },
   /**
     we'll need to grab the trackID and token from the store
    */
@@ -55,6 +52,10 @@ export default {
       this.spotifyTrack = await this.SpotifyApiInterface.spotifyGetFetchRequest(
         `${this.spotifyTrackBaseUrl}${this.getSeedTrackID}`
       );
+    },
+    audioPlayerEvent(event) {
+      alert("runs");
+      console.log(event);
     },
   },
 };

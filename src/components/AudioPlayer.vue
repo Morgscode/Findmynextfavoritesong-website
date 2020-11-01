@@ -167,7 +167,10 @@ export default {
   padding: 1rem;
 }
 .audio-player__icon-wrapper:hover,
-.audio-player__icon-wrapper:active {
+.audio-player__icon-wrapper:active,
+.audio-player__slider--wrapper:hover,
+.audio-player__slider--wrapper:active {
+  cursor: pointer;
   background-color: var(--darkBG1);
 }
 

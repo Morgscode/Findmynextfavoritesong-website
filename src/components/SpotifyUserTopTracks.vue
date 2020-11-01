@@ -19,13 +19,8 @@
             <p class="track__artist">{{ track.artists[0].name }}</p>
           </div>
           <div class="track__options">
-            <div class="spotify-audio-preview" v-if="track.preview_url">
-              <audio controls>
-                <source v-bind:src="track.preview_url" type="audio/mpeg" />
-              </audio>
-            </div>
-            <div v-else>
-              There is no audio preview available for {{ track.name }}
+            <div class="spotify-audio-preview">
+              <AudioPlayer v-bind:track="track" />
             </div>
             <div>
               <button
@@ -65,8 +60,12 @@
 <script>
 import { mapGetters, mapMutations } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
+import AudioPlayer from "./AudioPlayer";
 export default {
   name: "SpotifyUserTopTracks",
+  components: {
+    AudioPlayer,
+  },
   /**
     we'll need a function to retrieve the token from the store
    */
@@ -91,6 +90,7 @@ export default {
       this.bindSpotifyUserTopTracks();
     }
   },
+  mounted() {},
   methods: {
     ...mapMutations(["setSeedTrackID", "setSeedArtistID"]),
     async getSpotifyUserTopTracks(url) {
@@ -125,89 +125,13 @@ export default {
       this.setSeedArtistID(artistID);
       this.$router.push("track-analysis");
     },
+    audioPlayerEvent(event) {
+      alert("runs");
+      console.log(event);
+    },
   },
 };
 </script>
 
 <style>
-.tracks__header {
-  font-size: 22px;
-  margin-bottom: 3rem;
-}
-
-.track {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  border-bottom: var(--border);
-  padding-bottom: 3rem;
-  margin-top: 3rem;
-}
-
-.track__details {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 22px;
-}
-
-.track__image {
-  max-width: 400px;
-  margin-bottom: 3rem;
-}
-
-.track__name {
-  display: inline-block;
-}
-
-.track__details .track__name {
-  font-weight: 600;
-}
-
-.track__options div:first-child {
-  display: block;
-  margin-bottom: 3rem;
-}
-
-@media only screen and (min-width: 1201px) {
-  .track {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 1rem;
-  }
-
-  .track:not(first-child) {
-    margin-top: 3rem;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
-  .track {
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 1rem;
-  }
-
-  .track > * {
-    margin-bottom: 3rem;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .track__image {
-    max-width: 80%;
-  }
-
-  .track {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .track > *:not(:last-child) {
-    margin-bottom: 3rem;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .track > *:not(:last-child) {
-    margin-bottom: 1.5rem;
-  }
-}
 </style>

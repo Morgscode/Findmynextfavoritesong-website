@@ -21,13 +21,8 @@
         <p class="track__artist">{{ track.artists[0].name }}</p>
       </div>
       <div class="track__options">
-        <div class="spotify-audio-preview" v-if="track.preview_url">
-          <audio controls>
-            <source v-bind:src="track.preview_url" type="audio/mpeg" />
-          </audio>
-        </div>
-        <div v-else>
-          There is no audio preview available for {{ track.name }}
+        <div class="spotify-audio-preview">
+          <AudioPlayer v-bind:track="track" />
         </div>
         <div>
           <button
@@ -48,8 +43,12 @@
 <script>
 import { mapGetters } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
+import AudioPlayer from "./AudioPlayer";
 export default {
   name: "TrackRecommendations",
+  components: {
+    AudioPlayer,
+  },
   data() {
     return {
       spotifyRecommendationsBaseUrl: `https://api.spotify.com/v1/recommendations`,
@@ -125,6 +124,10 @@ export default {
         url
       );
       return response;
+    },
+    audioPlayerEvent(event) {
+      alert("runs");
+      console.log(event);
     },
   },
 };

@@ -19,6 +19,8 @@ export default {
   --green-accent: #27ae60;
   --turquoise: #1abc9c;
   --border: 2px solid var(--spotify-green);
+  --darkBG1: rgba(47, 54, 64, 1);
+  --darkBG2: rgba(53, 59, 72, 1);
 }
 
 *,
@@ -37,11 +39,7 @@ body {
   min-height: 100vh;
   font-size: 62.5%;
   background-color: #3a3a3a;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(47, 54, 64, 1),
-    rgba(53, 59, 72, 1)
-  );
+  background-image: linear-gradient(to bottom, var(--darkBG1), var(--darkBG2));
 }
 
 #app {
@@ -108,7 +106,7 @@ body {
 
 .btn-secondary {
   background-color: var(--turquoise);
-  margin: 2rem;
+  margin: 2rem auto;
 }
 
 .btn-alt,
@@ -140,7 +138,111 @@ form {
   max-width: 100%;
 }
 
+.tracks__header {
+  font-size: 22px;
+  margin-bottom: 3rem;
+}
+
+.track {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border-bottom: var(--border);
+  padding-bottom: 3rem;
+  margin-top: 3rem;
+}
+
+.track__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 22px;
+}
+
+.track__image {
+  max-width: 400px;
+  margin-bottom: 3rem;
+}
+
+.track__name {
+  display: inline-block;
+}
+
+.track__details .track__name {
+  font-weight: 600;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--spotify-green);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--spotify-green);
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 1201px) {
+  .track {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+  }
+
+  .track:not(first-child) {
+    margin-top: 3rem;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .track {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1rem;
+  }
+
+  .track > * {
+    margin-bottom: 3rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .track__image {
+    max-width: 80%;
+  }
+
+  .track {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .track > *:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+}
+
 @media only screen and (max-width: 576px) {
+  .track > *:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
   .btn {
     max-width: 100%;
   }
@@ -152,6 +254,10 @@ form {
   .panel {
     margin: 1rem auto;
     padding: 1.5rem 1rem;
+  }
+
+  .track__image {
+    margin-bottom: 1rem;
   }
 }
 </style>

@@ -17,6 +17,7 @@ const state = {
       valence: null,
     },
     genreOptions: [],
+    currentSampleTrackID: null,
   },
 };
 
@@ -35,6 +36,9 @@ const getters = {
   },
   getNewTrackParams: (state) => {
     return state.SpotifyUserState.trackParams;
+  },
+  getCurrentSampleTrack: (state) => {
+    return state.SpotifyUserState.currentSampleTrackID;
   },
 };
 
@@ -56,6 +60,9 @@ const mutations = {
   },
   storeNewGenreOptions: (state, options) => {
     return (state.SpotifyUserState.genreOptions = options);
+  },
+  setCurrentSampleTrack: (state, track) => {
+    return (state.SpotifyUserState.currentSampleTrackID = track);
   },
 };
 

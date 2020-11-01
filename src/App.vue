@@ -106,7 +106,7 @@ body {
 
 .btn-secondary {
   background-color: var(--turquoise);
-  margin: 2rem;
+  margin: 2rem auto;
 }
 
 .btn-alt,
@@ -172,6 +172,36 @@ form {
   font-weight: 600;
 }
 
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--spotify-green);
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--spotify-green);
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 1201px) {
   .track {
     grid-template-columns: repeat(2, 1fr);
@@ -212,9 +242,7 @@ form {
   .track > *:not(:last-child) {
     margin-bottom: 1.5rem;
   }
-}
 
-@media only screen and (max-width: 576px) {
   .btn {
     max-width: 100%;
   }
@@ -226,6 +254,10 @@ form {
   .panel {
     margin: 1rem auto;
     padding: 1.5rem 1rem;
+  }
+
+  .track__image {
+    margin-bottom: 1rem;
   }
 }
 </style>

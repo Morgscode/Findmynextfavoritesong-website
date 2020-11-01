@@ -130,9 +130,4 @@ export default {
     grid-template-columns: repeat(1, 1fr);
   }
 }
-
-@media only screen and (max-width: 576px) {
-  .track__details {
-  }
-}
 </style>

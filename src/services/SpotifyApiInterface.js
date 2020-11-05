@@ -12,7 +12,6 @@ class SpotifyApiInterface {
         Authorization: `Bearer ${this.token.toString()}`,
       },
     };
-
     return fetchOptions;
   }
 

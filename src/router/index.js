@@ -24,13 +24,6 @@ const routes = [
     name: "TrackAnalysis",
     component: TrackAnalysis,
   },
-  /**
-    we'll need to define a route with some components
-    that will allow us to see and select the spotify 
-    seed genres (maximum of 3), 
-    persist them in the store and then retrieve 
-    them in the recommendations route
-   */
   {
     path: "/spotify-genres",
     name: "SpotifyGenres",

@@ -53,10 +53,6 @@ export default {
         `${this.spotifyTrackBaseUrl}${this.getSeedTrackID}`
       );
     },
-    audioPlayerEvent(event) {
-      alert("runs");
-      console.log(event);
-    },
   },
 };
 </script>

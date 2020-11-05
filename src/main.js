@@ -9,7 +9,7 @@ Vue.use(VueScrollTo, {
   duration: 1400,
   easing: "ease",
   offset: -50,
-  cancellable: false,
+  cancelable: false,
   y: true,
 });
 

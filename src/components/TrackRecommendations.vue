@@ -125,10 +125,6 @@ export default {
       );
       return response;
     },
-    audioPlayerEvent(event) {
-      alert("runs");
-      console.log(event);
-    },
   },
 };
 </script>

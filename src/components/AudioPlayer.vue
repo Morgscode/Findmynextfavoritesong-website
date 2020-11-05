@@ -110,8 +110,8 @@ export default {
       if (currentTrack) {
         currentTrack.pause();
       }
-      this.isPaused = false;
       this.domRef.play();
+      this.isPaused = false;
       this.setCurrentSampleTrack(this.domRef);
     },
     pause() {

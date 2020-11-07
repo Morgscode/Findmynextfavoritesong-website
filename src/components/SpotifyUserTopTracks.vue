@@ -66,9 +66,6 @@ export default {
   components: {
     AudioPlayer,
   },
-  /**
-    we'll need a function to retrieve the token from the store
-   */
   data() {
     return {
       spotifyUserTopTracks: null,
@@ -124,10 +121,6 @@ export default {
       this.setSeedTrackID(trackID);
       this.setSeedArtistID(artistID);
       this.$router.push("track-analysis");
-    },
-    audioPlayerEvent(event) {
-      alert("runs");
-      console.log(event);
     },
   },
 };

@@ -65,7 +65,7 @@
       <div class="field-group">
         <p class="slider-label">
           instrumentalness
-          <span class="track-attriute-value">{{
+          <span class="track-attribute-value">{{
             newTrackParams.instrumentalness
           }}</span>
         </p>
@@ -269,7 +269,6 @@ export default {
       this.spotifyTrackAnalysis = await this.SpotifyApiInterface.spotifyGetFetchRequest(
         `${this.spotifyTrackAnalysisBaseUrl}${this.getSeedTrackID}`
       );
-      console.log(this.spotifyTrackAnalysis);
       this.bindInitialTrackAnalysis();
     },
     bindInitialTrackAnalysis() {

@@ -114,9 +114,9 @@ export default {
     },
     async requestSpotifyTrackRecommendations() {
       this.preparespotifyRecommendationsQuery();
-      this.trackRecommendations = await this.SpotifyApiInterface.spotifyGetFetchRequest(
+      return (this.trackRecommendations = await this.SpotifyApiInterface.spotifyGetFetchRequest(
         this.spotifyRecommendationsQuery
-      );
+      ));
     },
     async saveTrackToUserLibrary(trackID) {
       const url = `${this.spotifyLibraryEndPoint}${this.spotifyIdQueryStringKey}${trackID}`;
@@ -124,10 +124,6 @@ export default {
         url
       );
       return response;
-    },
-    audioPlayerEvent(event) {
-      alert("runs");
-      console.log(event);
     },
   },
 };

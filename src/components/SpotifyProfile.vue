@@ -13,11 +13,9 @@
             <span id="spotify-follower-count">{{ spotifyFollowers }}</span>
           </p>
         </div>
-        <button class="btn btn-alt">
-          <a target="_blank" v-bind:href="spotifyWebplayerUrl"
-            >open your Spotify webplayer</a
-          >
-        </button>
+        <a target="_blank" v-bind:href="spotifyWebplayerUrl"
+          ><button class="btn btn-alt">open your Spotify webplayer</button></a
+        >
       </div>
     </div>
     <div v-else id="error-message" class="panel">
@@ -36,9 +34,6 @@ import { mapGetters } from "vuex";
 import SpotifyApiInterface from "./../services/SpotifyApiInterface";
 export default {
   name: "SpotifyUserProfile",
-  /**
-    we'll need a function to retrieve the token from the store
-   */
   data() {
     return {
       token: null,
@@ -58,7 +53,7 @@ export default {
     this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      await this.getSpotifyUserProfile();
+      this.spotifyUserProfile = await this.getSpotifyUserProfile();
 
       if (this.spotifyUserProfile.error) {
         this.displayErrorMessage = true;
@@ -75,7 +70,7 @@ export default {
   updated() {},
   methods: {
     async getSpotifyUserProfile() {
-      this.spotifyUserProfile = await this.SpotifyApiInterface.spotifyGetFetchRequest(
+      return await this.SpotifyApiInterface.spotifyGetFetchRequest(
         this.spotifyProfileBaseUrl
       );
     },

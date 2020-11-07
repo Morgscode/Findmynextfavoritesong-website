@@ -6,10 +6,10 @@ import store from "./store";
 
 Vue.use(VueScrollTo, {
   container: "body",
-  duration: 1400,
+  duration: 2000,
   easing: "ease",
   offset: -50,
-  cancellable: false,
+  cancelable: false,
   y: true,
 });
 

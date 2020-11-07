@@ -78,7 +78,7 @@ export default {
       "getSpotifyAccessKey",
       "getSeedTrackID",
       "getSeedArtistID",
-      "getGenreOptions",
+      "getUserGenreOptions",
       "getNewTrackParams",
     ]),
   },
@@ -89,7 +89,8 @@ export default {
       this.prepareNewTrackParams();
       this.prepareGenreParams();
     }
-    await this.requestSpotifyTrackRecommendations();
+    this.trackRecommendations = await this.requestSpotifyTrackRecommendations();
+    this.$scrollTo("#spotify-user-profile", 200);
   },
   methods: {
     prepareNewTrackParams() {
@@ -104,7 +105,7 @@ export default {
       return this.newTrackParams;
     },
     prepareGenreParams() {
-      this.genres = this.getGenreOptions;
+      this.genres = this.getUserGenreOptions;
       this.genres = this.genres.join(",");
       return this.genres;
     },
@@ -114,9 +115,9 @@ export default {
     },
     async requestSpotifyTrackRecommendations() {
       this.preparespotifyRecommendationsQuery();
-      return (this.trackRecommendations = await this.SpotifyApiInterface.spotifyGetFetchRequest(
+      return await this.SpotifyApiInterface.spotifyGetFetchRequest(
         this.spotifyRecommendationsQuery
-      ));
+      );
     },
     async saveTrackToUserLibrary(trackID) {
       const url = `${this.spotifyLibraryEndPoint}${this.spotifyIdQueryStringKey}${trackID}`;

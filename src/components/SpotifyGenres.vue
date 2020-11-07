@@ -64,8 +64,9 @@ export default {
     this.token = this.getSpotifyAccessKey;
     if (this.token) {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
-      await this.getSpotifyGenreOptions();
+      this.spotifyGenreOptions = await this.getSpotifyGenreOptions();
     }
+    this.$scrollTo("#spotify-user-profile", 1000);
   },
   beforeUpdate() {
     this.genreOptions.length <= 0
@@ -79,10 +80,14 @@ export default {
   methods: {
     ...mapMutations(["storeNewGenreOptions"]),
     async getSpotifyGenreOptions() {
-      const genresResponse = await this.SpotifyApiInterface.spotifyGetFetchRequest(
+      const response = await this.SpotifyApiInterface.spotifyGetFetchRequest(
         this.spotifyGenresBaseUrl
       );
-      this.spotifyGenreOptions = genresResponse.genres;
+      if (response.genres) {
+        return response.genres;
+      } else {
+        return response.error;
+      }
     },
     recommendationsRedirect() {
       this.storeNewGenreOptions(this.genreOptions);

@@ -18,11 +18,18 @@ class SpotifyApiInterface {
   async spotifyGetFetchRequest(url) {
     const options = this.setSpotifyFetchOptions();
 
-    const response = await fetch(url, options)
-      .then((response) => response.json())
-      //.then((data) => console.log(data))
+    let response = await fetch(url, options)
+      .then((response) => {
+        if (response.status == 200) {
+          return response.json();
+        } else {
+          return (response.error = 1);
+        }
+      })
       // let's handle the error appropriately
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        return (response.error = err.message);
+      });
     return response;
   }
 
@@ -30,10 +37,17 @@ class SpotifyApiInterface {
     let options = this.setSpotifyFetchOptions();
     options.method = "PUT";
     const response = await fetch(url, options)
-      .then((response) => response.json())
-      //.then((data) => console.log(data))
+      .then((response) => {
+        if (response.status == 200) {
+          return response.json();
+        } else {
+          return (response.error = 1);
+        }
+      })
       // let's handle the error appropriately
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        return (response.error = err.message);
+      });
     return response;
   }
 }

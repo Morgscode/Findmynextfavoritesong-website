@@ -55,8 +55,10 @@ body {
 
 .btn {
   display: inline-block;
-  height: 54px;
-  width: 300px;
+  min-height: 54px;
+  width: 320px;
+  max-width: 320px;
+  padding: 12px 22px;
   border: none;
   text-decoration: none;
   border-radius: 50px;

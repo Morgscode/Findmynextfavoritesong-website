@@ -20,7 +20,7 @@
               v-bind:id="genre"
               v-bind:value="genre"
               v-bind:disabled="checkBoxDisabled"
-              v-model="genreOptions"
+              v-model="userGenreOptions"
             />
             <span class="checkmark"></span>
           </label>
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       token: null,
-      genreOptions: [],
+      userGenreOptions: [],
       spotifyGenreOptions: null,
       SpotifyApiInterface: null,
       checkBoxDisabled: false,
@@ -66,19 +66,19 @@ export default {
       this.SpotifyApiInterface = new SpotifyApiInterface(this.token);
       this.spotifyGenreOptions = await this.getSpotifyGenreOptions();
     }
-    this.$scrollTo("#spotify-user-profile", 1000);
+    this.$scrollTo("#spotify-user-profile", 200);
   },
   beforeUpdate() {
-    this.genreOptions.length <= 0
+    this.userGenreOptions.length <= 0
       ? (this.submitButtonDisabled = true)
       : (this.submitButtonDisabled = false);
-    if (this.genreOptions.length >= 3) {
+    if (this.userGenreOptions.length >= 3) {
       this.checkBoxDisabled = true;
       VueScrollTo.scrollTo("#submit-genres");
     }
   },
   methods: {
-    ...mapMutations(["storeNewGenreOptions"]),
+    ...mapMutations(["storeNewUserGenreOptions"]),
     async getSpotifyGenreOptions() {
       const response = await this.SpotifyApiInterface.spotifyGetFetchRequest(
         this.spotifyGenresBaseUrl
@@ -90,7 +90,7 @@ export default {
       }
     },
     recommendationsRedirect() {
-      this.storeNewGenreOptions(this.genreOptions);
+      this.storeNewUserGenreOptions(this.userGenreOptions);
       this.$router.push("track-recommendations");
     },
   },

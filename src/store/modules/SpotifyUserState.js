@@ -16,7 +16,7 @@ const state = {
       tempo: null,
       valence: null,
     },
-    genreOptions: [],
+    userGenreOptions: [],
     currentSampleTrackID: null,
   },
 };
@@ -31,8 +31,8 @@ const getters = {
   getSeedArtistID: (state) => {
     return state.SpotifyUserState.artistID;
   },
-  getGenreOptions: (state) => {
-    return state.SpotifyUserState.genreOptions;
+  getUserGenreOptions: (state) => {
+    return state.SpotifyUserState.userGenreOptions;
   },
   getNewTrackParams: (state) => {
     return state.SpotifyUserState.trackParams;
@@ -58,8 +58,8 @@ const mutations = {
   storeNewTrackParams: (state, newTrackParams) => {
     return (state.SpotifyUserState.trackParams = newTrackParams);
   },
-  storeNewGenreOptions: (state, options) => {
-    return (state.SpotifyUserState.genreOptions = options);
+  storeNewUserGenreOptions: (state, options) => {
+    return (state.SpotifyUserState.userGenreOptions = options);
   },
   setCurrentSampleTrack: (state, track) => {
     return (state.SpotifyUserState.currentSampleTrackID = track);

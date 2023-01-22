@@ -38,7 +38,7 @@ export default {
       return this.env === "dev"
         ? (this.redirectBaseUrl = "http://localhost:8080/")
         : (this.redirectBaseUrl =
-            "https://findmynextfavouritesong.netlify.app/");
+            "https://findmynextfavoritesong.luke-morgan.com/");
     },
     spotifyRedirect() {
       window.location.href = this.spotifyAuthUrl;

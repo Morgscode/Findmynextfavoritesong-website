@@ -63,7 +63,7 @@ export default {
     ...mapGetters(["getSpotifyAccessKey"]),
     filteredOptions() {
       if (this.filterValue.length === 0) return this.spotifyGenreOptions;
-      return this.spotifyGenreOptions.filter(option => option.toLowerCase().startsWith(this.filterValue));
+      return this.spotifyGenreOptions.filter(option => option.toLowerCase().startsWith(this.filterValue.toLowerCase()));
     }
   },
   async created() {

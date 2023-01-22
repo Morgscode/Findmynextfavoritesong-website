@@ -5,11 +5,12 @@
       hit the 'Find me new music based on these genres' button at the bottom of
       the panel.
     </p>
+    <input v-model="filterValue" placeholder="search for a genre..." class="filter-input" type="search" name="optionsFilter" id="" />
     <form class="genre-form" @submit.prevent>
       <div class="genre-form-options">
         <div
           class="genre-form-group"
-          v-for="genre in spotifyGenreOptions"
+          v-for="genre in filteredOptions"
           v-bind:key="genre"
         >
           <label class="checkbox-container" v-bind:for="genre"
@@ -52,6 +53,7 @@ export default {
       spotifyGenreOptions: null,
       SpotifyApiInterface: null,
       checkBoxDisabled: false,
+      filterValue: '',
       submitButtonDisabled: true,
       spotifyGenresBaseUrl:
         "https://api.spotify.com/v1/recommendations/available-genre-seeds",
@@ -59,6 +61,10 @@ export default {
   },
   computed: {
     ...mapGetters(["getSpotifyAccessKey"]),
+    filteredOptions() {
+      if (this.filterValue.length === 0) return this.spotifyGenreOptions;
+      return this.spotifyGenreOptions.filter(option => option.toLowerCase().startsWith(this.filterValue));
+    }
   },
   async created() {
     this.token = this.getSpotifyAccessKey;
@@ -112,9 +118,23 @@ export default {
 .genre-form-group {
   border-radius: 50px;
   background: linear-gradient(225deg, #79899d, #667384);
-  box-shadow: -20px 20px 60px #606d7d, 20px -20px 60px #8293a9;
   padding: 2rem;
   border: 1px solid var(--spotify-green);
+}
+
+.filter-input {
+  width: 100%;
+  padding: 12px 22px;
+  margin-bottom: 3rem;
+  background-color: #495057;
+  color: #fff;
+  border: none;
+}
+
+.filter-input::placeholder {
+    font-weight: bold;
+    opacity: 0.5;
+    color: #fff;
 }
 
 /* Customize the label (the container) */

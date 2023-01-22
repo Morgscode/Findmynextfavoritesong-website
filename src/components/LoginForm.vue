@@ -19,7 +19,7 @@ export default {
   name: "LoginForm",
   data() {
     return {
-      env: "prod",
+      env: "dev",
       spotifyClientID: `083f78d343ae4a98b5b4e843b87f7b61`,
       redirectBaseUrl: `http://localhost:8080/`,
       redirectPath: "spotify-tracks",

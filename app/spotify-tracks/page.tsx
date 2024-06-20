@@ -84,7 +84,7 @@ export default function SpotifyTracks() {
   }
 
   useEffect(() => {
-    if (loading) return;
+    console.log(authState);
     getTracks();
   }, []);
 
@@ -99,56 +99,62 @@ export default function SpotifyTracks() {
   }
 
   return (
-    <section className="h-full max-h-full overflow-y-scroll w-full bg-[#191414]">
-      <h1>Top tracks</h1>
-      <p>Select up to 3 to sample similar music from.</p>
-      {tracks && <p>{tracks.length} songs</p>}
-      <div
-        className="overflow-y-scroll"
-        ref={tracksRef}
-        onScroll={() => {
-          handleScroll() && !loading && handleListEndReached();
-        }}
-      >
-        {tracks.map((track) => (
-          <div
-            key={track.id}
-            onClick={() => trackDispatch({ type: "SET_TRACK", payload: track })}
-          >
-            <SpotifyTrack
-              key={track.id}
-              isSelected={
-                (trackState.track && trackState.track.id === track.id) || false
-              }
-              {...track}
-            >
-              <div className="flex flex-row gap-1">
-                <div
-                  className="p-2 flex items-center justify-center"
-                  onClick={() => toggleTrack(track)}
-                >
-                  select
-                </div>
-                <div className="p-2" onClick={() => sampleRedirect(track)}>
-                  analyse
-                </div>
-              </div>
-            </SpotifyTrack>
-          </div>
-        ))}
-      </div>
-      {tracksSelected() && (
-        <Link
-          href={`track-features/${
-            (trackState.track && trackState.track.id) ||
-            sampleState.tracks[0].id
-          }`}
+    <section className="h-full relative max-h-full w-full flex justify-center bg-[#191414] overflow-hidden">
+      <div className="max-w-[800px] lg:w-[800px] pt-4">
+        <header className="mb-4 flex flex-col gap-2">
+          <h1 className="text-2xl font-bold">Top tracks</h1>
+          <p>Select up to 3 to sample similar music from.</p>
+          {tracks && <p>{tracks.length} songs</p>}
+        </header>
+        <div
+          ref={tracksRef}
+          className="h-calc-h-full-100 lg:h-calc-h-full-150 overflow-y-scroll max-w-[800px] flex flex-col gap-2"
+          onScroll={() => {
+            handleScroll() && !loading && handleListEndReached();
+          }}
         >
-          <div className="rounded-full bg-[#1DB954] p-4 m-4">
-            <p className="text-[#191414] text-center">Set Sample Preferences</p>
-          </div>
-        </Link>
-      )}
+          {tracks.map((track) => (
+            <div
+              key={track.id}
+              onClick={() =>
+                trackDispatch({ type: "SET_TRACK", payload: track })
+              }
+            >
+              <SpotifyTrack
+                key={track.id}
+                isSelected={
+                  (trackState.track && trackState.track.id === track.id) ||
+                  false
+                }
+                {...track}
+              >
+                <div className="flex flex-row gap-1">
+                  <div
+                    className="p-2 flex items-center justify-center"
+                    onClick={() => toggleTrack(track)}
+                  >
+                    select
+                  </div>
+                  <div className="p-2" onClick={() => sampleRedirect(track)}>
+                    analyse
+                  </div>
+                </div>
+              </SpotifyTrack>
+            </div>
+          ))}
+        </div>
+        {tracksSelected() && (
+          <Link
+            className="rounded-full bg-[#1DB954] p-4 m-4 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
+            href={`track-features/${
+              (trackState.track && trackState.track.id) ||
+              sampleState.tracks[0].id
+            }`}
+          >
+            Set Sample Preferences
+          </Link>
+        )}
+      </div>
     </section>
   );
 }

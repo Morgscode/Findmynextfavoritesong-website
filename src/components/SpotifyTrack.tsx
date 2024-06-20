@@ -17,15 +17,15 @@ export default function SpotifyTrack({
     ? "font-bold text-[#1DB954]"
     : "font-bold text-white";
   return (
-    <div className="flex flex-row items-center gap-4 py-1 mb-1">
+    <div className="flex items-center gap-4">
       <img
-        className="rounded-lg"
+        className="relative rounded-md"
         src={album.images[0].url}
         height={50}
         width={50}
         alt={name}
       />
-      <div className="flex gap-1 mr-auto">
+      <div className="flex flex-col gap-1 mr-auto">
         <p className={textStyles}>{name}</p>
         <div className="flex flex-row items-center">
           {explicit && (

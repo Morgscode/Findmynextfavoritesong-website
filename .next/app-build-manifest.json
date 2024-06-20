@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/page": [
+    "/spotify-tracks/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
+      "static/chunks/app/spotify-tracks/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -11,10 +11,10 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/spotify-tracks/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/spotify-tracks/page.js"
+      "static/chunks/app/page.js"
     ]
   }
 }

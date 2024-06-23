@@ -47,3 +47,78 @@ body {
   background: #1DB954;
   border-radius: 40px;
 }
+
+.fmnfs-range-slider {
+  -webkit-appearance: none;
+  /* Hides the default slider appearance */
+  width: 100%;
+  height: 8px;
+  background: #000000;
+  outline: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider:hover {
+  background: #000000;
+}
+
+.fmnfs-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Hides the default thumb appearance */
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1DB954;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider::-webkit-slider-thumb:hover {
+  background: #1DB954;
+}
+
+.fmnfs-range-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1DB954;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider::-moz-range-thumb:hover {
+  background: #1DB954;
+}
+
+.fmnfs-range-slider::-ms-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1DB954;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider::-ms-thumb:hover {
+  background: #1DB954;
+}
+
+.fmnfs-range-slider::-ms-track {
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.fmnfs-range-slider::-ms-fill-lower {
+  background: #000000;
+  border-radius: 5px;
+}
+
+.fmnfs-range-slider::-ms-fill-upper {
+  background: #000000;
+  border-radius: 5px;
+}

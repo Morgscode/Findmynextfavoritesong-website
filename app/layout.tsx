@@ -18,6 +18,10 @@ export default function RootLayout({
             <body className="relative h-screen max-h-screen w-screen flex items-center">
               {children}
             </body>
+            <script
+              src="https://kit.fontawesome.com/0ab8f87329.js"
+              crossOrigin="anonymous"
+            ></script>
           </html>
         </TrackProvider>
       </SampleProvider>

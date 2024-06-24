@@ -16,11 +16,15 @@ export default function RootLayout({
       <SampleProvider>
         <TrackProvider>
           <html lang="en">
-            <body className="relative h-screen max-h-screen w-screen bg-[#191414]">
-              <div className="relative h-calc-h-full-100">{children}</div>
-              <div className="max-w-[800px] mx-auto">
-                <AudioPlayer />
-              </div>
+            <body className="relative h-screen max-h-screen w-screen">
+              <main className="bg-[#191414] h-full">
+                <div className="relative h-calc-h-full-100">{children}</div>
+                <div className="max-w-[800px] mx-auto">
+                  <div className="mx-2">
+                    <AudioPlayer />
+                  </div>
+                </div>
+              </main>
             </body>
             <script
               src="https://kit.fontawesome.com/0ab8f87329.js"

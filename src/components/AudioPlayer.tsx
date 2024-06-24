@@ -64,11 +64,11 @@ export default function AudioPlayer() {
         src={state.track.preview_url}
         onEnded={() => handleEnded()}
       />
-      <div className="flex flex-row items-center bg-[#083518] px-2 py-2 rounded-lg mx-4">
+      <div className="flex flex-row items-center bg-[#083518] px-2 py-2 rounded-lg">
         <img
           className="mr-4 rounded-lg"
           style={{ marginRight: 16 }}
-          src={state.track.album.images[2].url}
+          src={state.track.album.images[1].url}
           height={64}
           width={64}
         />

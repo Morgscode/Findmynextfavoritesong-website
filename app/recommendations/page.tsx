@@ -48,7 +48,7 @@ export default function Recommendations() {
 
   if (recommendations.length === 0) {
     return (
-      <section className="h-full relative max-h-full w-full flex justify-center items-center bg-[#191414] overflow-hidden">
+      <section className="h-full relative max-h-full w-full flex justify-center items-center overflow-hidden">
         <p className="text-2xl text-gray-400 text-bold mb-8">
           Finding music to sample...
         </p>
@@ -57,7 +57,7 @@ export default function Recommendations() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full bg-[#191414] flex justify-center overflow-hidden">
+    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
       <div className="max-w-[800px] lg:w-[800px]">
         <header className="flex flex-col gap-2 p-4">
           <p className="text-white text-2xl font-bold">Recommendations</p>

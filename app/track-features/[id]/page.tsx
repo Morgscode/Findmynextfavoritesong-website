@@ -67,7 +67,7 @@ export default function TrackFeatures() {
 
   if (!sampleState.features) {
     return (
-      <section className="h-full max-h-full w-full flex flex-col items-center justify-center bg-[#191414]">
+      <section className="h-full max-h-full w-full flex flex-col items-center justify-center">
         <p className="text-2xl font-bold text-gray-400 mb-8s">
           Fetching track analysis...
         </p>
@@ -76,7 +76,7 @@ export default function TrackFeatures() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full flex justify-center bg-[#191414] overflow-hidden">
+    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
       <div className="max-w-[800px] lg:w-[800px] pt-4">
         <header className="mb-4 flex flex-col gap-2">
           <h1 className="text-2xl font-bold">Track features</h1>

@@ -88,7 +88,7 @@ export default function SpotifyTracks() {
 
   if (tracks.length === 0) {
     return (
-      <section className="h-full max-h-full w-full flex flex-col items-center justify-center bg-[#191414]">
+      <section className="h-full max-h-full w-full flex flex-col items-center justify-center">
         <p className="text-2xl font-bold text-gray-400 mb-8s">
           Fetching top tracks...
         </p>
@@ -97,7 +97,7 @@ export default function SpotifyTracks() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full flex justify-center bg-[#191414] overflow-hidden">
+    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
       <div className="max-w-[800px] lg:w-[800px]">
         <header className="p-4 flex flex-col gap-2">
           <h1 className="text-2xl font-bold">Top tracks</h1>

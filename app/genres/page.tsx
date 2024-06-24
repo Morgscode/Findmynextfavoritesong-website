@@ -51,7 +51,7 @@ export default function Genres() {
 
   if (!genres.length) {
     return (
-      <section className="h-full relative max-h-full w-full flex justify-center items-center bg-[#191414] overflow-hidden">
+      <section className="h-full relative max-h-full w-full flex justify-center items-center overflow-hidden">
         <p className="text-2xl text-gray-400 font-bold mb-8">
           Fetching Genres...
         </p>
@@ -60,7 +60,7 @@ export default function Genres() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full bg-[#191414] flex justify-center overflow-hidden">
+    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
       <div className="max-w-[800px] lg:w-[800px] pt-4">
         <header className="p-4 flex flex-col gap-2">
           <p className="text-white text-2xl font-bold">Available Seed Genres</p>

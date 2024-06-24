@@ -3,6 +3,7 @@
 import { AuthProvider } from "@/src/context/AuthContext";
 import { TrackProvider } from "@/src/context/TrackContext";
 import { SampleProvider } from "@/src/context/SampleConext";
+import AudioPlayer from "@/src/components/AudioPlayer";
 import "./globals.css";
 
 export default function RootLayout({
@@ -15,8 +16,11 @@ export default function RootLayout({
       <SampleProvider>
         <TrackProvider>
           <html lang="en">
-            <body className="relative h-screen max-h-screen w-screen flex items-center">
-              {children}
+            <body className="relative h-screen max-h-screen w-screen bg-[#191414]">
+              <div className="relative h-calc-h-full-100">{children}</div>
+              <div className="max-w-[800px] mx-auto">
+                <AudioPlayer />
+              </div>
             </body>
             <script
               src="https://kit.fontawesome.com/0ab8f87329.js"

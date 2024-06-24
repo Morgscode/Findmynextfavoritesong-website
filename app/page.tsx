@@ -11,7 +11,6 @@ export default function Home() {
   const path = usePathname();
 
   useEffect(() => {
-    if (typeof window === undefined) return;
     if (path && !authState.isLoggedIn) {
       const { hash } = window.location;
       if (hash && hash.startsWith("#access_token")) {
@@ -22,7 +21,6 @@ export default function Home() {
   }, [path]);
 
   const action = () => {
-    if (typeof window === undefined) return;
     if (!authState.isLoggedIn) {
       return (
         <Link

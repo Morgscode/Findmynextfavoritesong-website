@@ -58,11 +58,11 @@ export default function Recommendations() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] lg:pt-4">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] ">
         <header className="flex flex-col gap-2 p-4">
           <p className="text-white text-2xl font-bold">Recommendations</p>
         </header>
-        <div className="h-calc-h-full-150 overflow-y-scroll flex flex-col gap-2 p-4">
+        <div className="overflow-y-scroll flex flex-col gap-2 p-4">
           {recommendations.map((track) => (
             <div
               key={track.id}

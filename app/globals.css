@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1DB954;
+  border-radius: 40px;
+}
+
+.fmnfs-range-slider {
+  -webkit-appearance: none;
+  /* Hides the default slider appearance */
+  width: 100%;
+  height: 8px;
+  background: #000000;
+  outline: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider:hover {
+  background: #000000;
+}
+
+.fmnfs-range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /* Hides the default thumb appearance */
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1DB954;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider::-webkit-slider-thumb:hover {
+  background: #1DB954;
+}
+
+.fmnfs-range-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1DB954;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider::-moz-range-thumb:hover {
+  background: #1DB954;
+}
+
+.fmnfs-range-slider::-ms-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #1DB954;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.fmnfs-range-slider::-ms-thumb:hover {
+  background: #1DB954;
+}
+
+.fmnfs-range-slider::-ms-track {
+  width: 100%;
+  height: 8px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.fmnfs-range-slider::-ms-fill-lower {
+  background: #000000;
+  border-radius: 5px;
+}
+
+.fmnfs-range-slider::-ms-fill-upper {
+  background: #000000;
+  border-radius: 5px;
+}

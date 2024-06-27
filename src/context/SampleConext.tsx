@@ -10,7 +10,7 @@ import { type SpotifyTrack, type TrackFeatures } from "@src/lib/spotify";
 type SampleState = {
   tracks: Array<SpotifyTrack> | [];
   features: TrackFeatures | null;
-  genres: Array<string> | [];
+  genres: Array<string>;
 };
 
 type SetTracksAction = { type: "SET_TRACKS"; payload: Array<SpotifyTrack> };

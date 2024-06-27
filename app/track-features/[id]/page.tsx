@@ -77,8 +77,8 @@ export default function TrackFeatures() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="max-w-[800px] lg:w-[800px] pt-4">
-        <header className="mb-4 flex flex-col gap-2">
+      <div className=" relative max-w-[800px] lg:w-[800px] pt-4">
+        <header className="mb-4 flex flex-col gap-2 p-4">
           <h1 className="text-2xl font-bold">Track features</h1>
           <p className="text-gray-400 text-sm">
             These attributes are a measure of how Spotify classifies music. You
@@ -87,12 +87,12 @@ export default function TrackFeatures() {
             recieve
           </p>
         </header>
-        <div className="h-calc-h-full-150 overflow-y-scroll relative flex flex-col gap-4 pb-8">
+        <div className="h-calc-h-full-150 overflow-y-scroll relative flex flex-col gap-4 p-4">
           {sliders(sampleState.features)}
         </div>
         {sampleState.features && (
           <Link
-            className="rounded-full bg-[#1DB954] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
+            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
             href="/genres"
           >
             Select Genres

@@ -20,7 +20,7 @@ export default function SpotifyTrack({
     <div className="flex items-center gap-4">
       <img
         className="relative rounded-md"
-        src={album.images[1].url}
+        src={album.images[1]?.url ?? album.images[0]?.url}
         height={64}
         width={64}
         alt={name}

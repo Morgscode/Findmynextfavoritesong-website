@@ -61,8 +61,8 @@ export default function Genres() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="max-w-[800px] lg:w-[800px] pt-4">
-        <header className="p-4 flex flex-col gap-2">
+      <div className="relative max-w-[800px] lg:w-[800px] pt-4">
+        <header className="p-4 flex flex-col gap-2 p-4">
           <p className="text-white text-2xl font-bold">Available Seed Genres</p>
           <p className="text-gray-400">
             Select up to {5 - sampleState.tracks.length} to tell Spotify what
@@ -82,7 +82,7 @@ export default function Genres() {
             </div>
           )}
         </header>
-        <div className="h-calc-h-full-150 overflow-y-scroll relative flex flex-col gap-4 p-4 pb-8">
+        <div className="h-calc-h-full-150 overflow-y-scroll relative flex flex-col gap-4 p-4">
           <div className="flex flex-row flex-wrap gap-2">
             {genres.map((genre, index) => (
               <button
@@ -98,7 +98,7 @@ export default function Genres() {
         </div>
         {genresSelected() && (
           <Link
-            className="rounded-full bg-[#1DB954] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
+            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
             href="/recommendations"
           >
             Get Recommendations

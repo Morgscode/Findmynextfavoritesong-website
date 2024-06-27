@@ -277,6 +277,8 @@ export async function getRecommendations(
       seeds: body.seeds as Array<RecommendationSeed>,
     } as RecommendationsResponse;
   } catch (error) {
+    // eslint-disable-next-line
+    console.error(error);
     return {
       tracks: [],
       seeds: [],

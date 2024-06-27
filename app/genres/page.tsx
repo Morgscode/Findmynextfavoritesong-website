@@ -61,7 +61,7 @@ export default function Genres() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] ">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
         <header className="p-4 flex flex-col gap-2 p-4">
           <p className="text-white text-2xl font-bold">Available Seed Genres</p>
           <p className="text-gray-400">
@@ -98,7 +98,7 @@ export default function Genres() {
         </div>
         {genresSelected() && (
           <Link
-            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
+            className="rounded-full bg-[#1DB954] p-4 m-2 text-[#191414] text-center"
             href="/recommendations"
           >
             Get Recommendations

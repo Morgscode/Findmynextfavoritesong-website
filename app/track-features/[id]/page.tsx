@@ -77,7 +77,7 @@ export default function TrackFeatures() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] ">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
         <header className="mb-4 flex flex-col gap-2 p-4">
           <h1 className="text-2xl font-bold">Track features</h1>
           <p className="text-gray-400 text-sm">
@@ -92,7 +92,7 @@ export default function TrackFeatures() {
         </div>
         {sampleState.features && (
           <Link
-            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
+            className="rounded-full bg-[#1DB954] p-4 m-2 text-[#191414] text-center"
             href="/genres"
           >
             Select Genres

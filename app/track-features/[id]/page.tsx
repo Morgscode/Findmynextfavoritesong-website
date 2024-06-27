@@ -77,7 +77,7 @@ export default function TrackFeatures() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className=" relative max-w-[800px] lg:w-[800px] pt-4">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] ">
         <header className="mb-4 flex flex-col gap-2 p-4">
           <h1 className="text-2xl font-bold">Track features</h1>
           <p className="text-gray-400 text-sm">
@@ -87,7 +87,7 @@ export default function TrackFeatures() {
             recieve
           </p>
         </header>
-        <div className="h-calc-h-full-150 overflow-y-scroll relative flex flex-col gap-4 p-4">
+        <div className="overflow-y-scroll relative flex flex-col gap-4 p-4">
           {sliders(sampleState.features)}
         </div>
         {sampleState.features && (

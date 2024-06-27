@@ -89,7 +89,7 @@ export default function SpotifyTracks() {
   if (tracks.length === 0) {
     return (
       <section className="h-full max-h-full w-full flex flex-col items-center justify-center">
-        <p className="text-2xl font-bold text-gray-400 mb-8s">
+        <p className="text-2xl font-bold text-gray-400">
           Fetching top tracks...
         </p>
       </section>
@@ -98,7 +98,7 @@ export default function SpotifyTracks() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="relative max-w-[800px] lg:w-[800px] pt-4">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] lg:pt-4">
         <header className="p-4 flex flex-col gap-2">
           <h1 className="text-2xl font-bold">Top tracks</h1>
           <p>Select up to 3 to sample similar music from.</p>
@@ -163,7 +163,7 @@ export default function SpotifyTracks() {
         </div>
         {tracksSelected() && (
           <Link
-            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-8 text-[#191414] text-center absolute bottom-0 left-1/2 translate-x-[-50%]"
+            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-1 text-[#191414] text-center "
             href={`track-features/${
               (trackState.track && trackState.track.id) ||
               sampleState.tracks[0].id

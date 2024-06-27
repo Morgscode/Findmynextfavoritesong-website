@@ -163,7 +163,7 @@ export default function SpotifyTracks() {
         </div>
         {tracksSelected() && (
           <Link
-            className="rounded-full bg-[#1DB954] w-full max-w-[400px] p-4 mb-1 text-[#191414] text-center "
+            className="rounded-full bg-[#1DB954] p-4 m-2 text-[#191414] text-center"
             href={`track-features/${
               (trackState.track && trackState.track.id) ||
               sampleState.tracks[0].id

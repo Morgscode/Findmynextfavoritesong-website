@@ -77,7 +77,7 @@ export default function TrackFeatures() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] ">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
         <header className="mb-4 flex flex-col gap-2 p-4">
           <h1 className="text-2xl font-bold">Track features</h1>
           <p className="text-gray-400 text-sm">

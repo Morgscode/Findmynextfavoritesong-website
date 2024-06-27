@@ -61,7 +61,7 @@ export default function Genres() {
 
   return (
     <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
-      <div className="relative flex flex-col max-w-[800px] lg:w-[800px] ">
+      <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
         <header className="p-4 flex flex-col gap-2 p-4">
           <p className="text-white text-2xl font-bold">Available Seed Genres</p>
           <p className="text-gray-400">

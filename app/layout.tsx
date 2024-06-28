@@ -4,7 +4,7 @@ import { AuthProvider } from "@/src/context/AuthContext";
 import { TrackProvider } from "@/src/context/TrackContext";
 import { SampleProvider } from "@/src/context/SampleConext";
 import AudioPlayer from "@/src/components/AudioPlayer";
-import { ToastContainer, Slide } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
@@ -32,9 +32,9 @@ export default function RootLayout({
                     newestOnTop={false}
                     closeOnClick
                     rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
+                    pauseOnFocusLoss={false}
+                    draggable={false}
+                    pauseOnHover={false}
                     theme="dark"
                   />
                 </div>

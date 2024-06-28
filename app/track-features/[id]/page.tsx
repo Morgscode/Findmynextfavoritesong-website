@@ -46,7 +46,7 @@ export default function TrackFeatures() {
         return (
           <div className="flex flex-col gap-4 pr-4 mb-4">
             <label className="text-lg" htmlFor={`slider-${key}`}>
-              {info.name}
+              {info.name} - <span className="text-[#1DB954]">{value}</span>
             </label>
             <p className="text-gray-400 text-sm">{info.description}</p>
             <input

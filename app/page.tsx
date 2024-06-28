@@ -11,6 +11,8 @@ export default function Home() {
   const [appUrl, setAppUrl] = useState<string>("/");
   const path = usePathname();
 
+  const stuff: any = "thing";
+
   useEffect(() => {
     setAppUrl(window.location.origin);
   }, []);

@@ -40,10 +40,11 @@
     "extends": [
       "./node_modules/@commitlint/config-conventional"
     ]
-  }, 
-   "lint-staged": {
+  },
+  "lint-staged": {
     "**/*": [
-      "eslint"
+      "eslint",
+      "prettier --write --ignore-unknown"
     ]
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { AuthProvider } from "@/src/context/AuthContext";
 import { TrackProvider } from "@/src/context/TrackContext";
 import { SampleProvider } from "@/src/context/SampleConext";

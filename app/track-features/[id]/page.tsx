@@ -44,7 +44,7 @@ export default function TrackFeatures() {
       .map(([key, value], index) => {
         const info = TRACK_FEATURES_INFO[key];
         return (
-          <div className="flex flex-col gap-4 pr-4 mb-4">
+          <div className="flex flex-col gap-4 pr-4 mb-4" key={key}>
             <label className="text-lg" htmlFor={`slider-${key}`}>
               {info.name} - <span className="text-[#1DB954]">{value}</span>
             </label>

@@ -47,6 +47,7 @@ export default function Genres() {
           type: "SET_GENRES",
           payload: [...sampleState.genres, genre],
         });
+    // stuff and things
   }
 
   if (!genres.length) {

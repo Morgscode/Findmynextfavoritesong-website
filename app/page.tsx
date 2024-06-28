@@ -31,7 +31,7 @@ export default function Home() {
         <Link
           href={getSpotifyAuthUrl(
             appUrl,
-            process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? "CLIENT ID NOT SET"
+            process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? "CLIENT ID NOT SET",
           )}
           className="rounded-full bg-[#1DB954] p-4 text-[#191414]"
         >

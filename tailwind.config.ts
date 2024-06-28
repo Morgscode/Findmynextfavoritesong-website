@@ -17,6 +17,7 @@ const config: Config = {
       spacing: {
           "calc-h-full-50": "calc(100% - 50px)",
           "calc-h-full-75": "calc(100% - 75px)",
+          "calc-h-full-85": "calc(100% - 85px)",
           "calc-h-full-100": "calc(100% - 100px)",
           "calc-h-full-150": "calc(100% - 150px)",
       },

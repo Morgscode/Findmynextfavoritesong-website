@@ -69,14 +69,14 @@ export default function AudioPlayer() {
           className="mr-4 rounded-lg"
           style={{ marginRight: 16 }}
           src={state.track.album.images[1].url}
-          height={40}
-          width={40}
+          height={48}
+          width={48}
         />
         <div className="">
-          <p className="text-white text-sm">{state.track.name}</p>
-          <p className="text-white text-xs">{state.track.artists[0].name}</p>
+          <p className="text-white">{state.track.name}</p>
+          <p className="text-white text-sm">{state.track.artists[0].name}</p>
         </div>
-        <button onClick={() => toggleAudio()} className="ml-auto mr-4">
+        <button onClick={() => toggleAudio()} className="ml-auto mr-2">
           {icon()}
         </button>
       </div>

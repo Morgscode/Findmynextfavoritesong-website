@@ -106,7 +106,7 @@ export default function SpotifyTracks() {
         </header>
         <div
           ref={tracksRef}
-          className="overflow-y-scroll flex flex-col gap-2 px-4"
+          className="overflow-y-scroll flex flex-col gap-2 p-4"
           onScroll={() => {
             handleScroll() && !loading && handleListEndReached();
           }}

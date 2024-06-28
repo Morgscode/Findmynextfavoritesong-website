@@ -6,10 +6,6 @@ export default function AudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [paused, setPaused] = useState<boolean>(true);
 
-  const stuff: any = 4;
-  const thing: any = "";
-  const athing: any = "";
-
   useEffect(() => {
     if (!state.track) return;
     audioRef.current?.play();

@@ -4,6 +4,8 @@ import { AuthProvider } from "@/src/context/AuthContext";
 import { TrackProvider } from "@/src/context/TrackContext";
 import { SampleProvider } from "@/src/context/SampleConext";
 import AudioPlayer from "@/src/components/AudioPlayer";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 export default function RootLayout({
@@ -23,6 +25,18 @@ export default function RootLayout({
                   <div className="mx-4 mt-2">
                     <AudioPlayer />
                   </div>
+                  <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                  />
                 </div>
               </main>
             </body>

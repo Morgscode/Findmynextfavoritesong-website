@@ -11,7 +11,6 @@ export default function Home() {
   const path = usePathname();
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
     if (path && !authState.isLoggedIn) {
       const { hash } = window.location;
       if (hash && hash.startsWith("#access_token")) {
@@ -22,12 +21,11 @@ export default function Home() {
   }, [path]);
 
   const action = () => {
-    if (typeof window === "undefined") return;
     if (!authState.isLoggedIn) {
       return (
         <Link
           href={getSpotifyAuthUrl(
-            window.location.origin,
+            process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin,
             process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? "CLIENT ID NOT SET"
           )}
           className="rounded-full bg-[#1DB954] p-4 text-[#191414]"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { getSpotifyAuthUrl } from "@/src/lib/spotify";
 import { useAuthContext } from "@/src/context/AuthContext";
@@ -8,7 +8,12 @@ import { usePathname } from "next/navigation";
 
 export default function Home() {
   const { state: authState, dispatch: authDispatch } = useAuthContext();
+  const [appUrl, setAppUrl] = useState<string>("/");
   const path = usePathname();
+
+  useEffect(() => {
+    setAppUrl(window.location.origin);
+  }, []);
 
   useEffect(() => {
     if (path && !authState.isLoggedIn) {
@@ -25,7 +30,7 @@ export default function Home() {
       return (
         <Link
           href={getSpotifyAuthUrl(
-            process.env.NEXT_PUBLIC_APP_URL ?? window.location.origin,
+            appUrl,
             process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID ?? "CLIENT ID NOT SET"
           )}
           className="rounded-full bg-[#1DB954] p-4 text-[#191414]"

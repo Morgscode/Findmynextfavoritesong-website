@@ -20,7 +20,7 @@ export default function RootLayout({
               <main className="bg-[#191414] h-full">
                 <div className="relative h-calc-h-full-75">{children}</div>
                 <div className="max-w-[800px] mx-auto">
-                  <div className="mx-2">
+                  <div className="mx-4">
                     <AudioPlayer />
                   </div>
                 </div>

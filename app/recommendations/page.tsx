@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import SpotifyTrack from "@src/components/SpotifyTrack";
 import { useAuthContext } from "@src/context/AuthContext";
 import { useSampleContext } from "@src/context/SampleConext";
@@ -34,6 +35,7 @@ export default function Recommendations() {
     if (!authState.token) return;
     track.preview_url && trackDispatch({ type: "SET_TRACK", payload: track });
     await addTrackToLibrary(authState.token, track);
+    toast.success(`Added ${track.name} to liked songs playlist`);
   }
 
   const isSelectedTrack = (track: SpotifyTrackType) =>

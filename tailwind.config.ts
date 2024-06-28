@@ -15,9 +15,10 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       }, 
       spacing: {
+          "calc-h-full-50": "calc(100% - 50px)",
+          "calc-h-full-75": "calc(100% - 75px)",
           "calc-h-full-100": "calc(100% - 100px)",
           "calc-h-full-150": "calc(100% - 150px)",
-          "calc-h-screen-!200": "calc(100vh, -200px)"
       },
     },
   },

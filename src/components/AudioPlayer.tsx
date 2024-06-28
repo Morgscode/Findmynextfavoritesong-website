@@ -8,6 +8,7 @@ export default function AudioPlayer() {
 
   const stuff: any = 4;
   const thing: any = "";
+  const athing: any = "";
 
   useEffect(() => {
     if (!state.track) return;

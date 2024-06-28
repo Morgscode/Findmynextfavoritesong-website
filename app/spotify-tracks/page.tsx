@@ -73,7 +73,7 @@ export default function SpotifyTracks() {
     ) {
       trackDispatch({ type: "SET_TRACK", payload: track });
     }
-    if (!isSelectedTrack(track)) {
+    if (!isSelectedTrack(track) && sampleState.tracks.length < 3) {
       sampleDispatch({
         type: "SET_TRACKS",
         payload: [...sampleState.tracks, track],
@@ -147,7 +147,10 @@ export default function SpotifyTracks() {
                   </button>
                   <button
                     className="p-2 flex items-center justify-center cursor-pointer"
-                    onClick={() => sampleRedirect(track)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      sampleRedirect(track);
+                    }}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

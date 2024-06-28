@@ -126,7 +126,7 @@ export default function SpotifyTracks() {
                 }
                 {...track}
               >
-                <div className="flex flex-row gap-1">
+                <div className="self-stretch flex flex-row gap-1">
                   <button
                     className="p-2 flex items-center justify-center cursor-pointer"
                     onClick={(event) => {

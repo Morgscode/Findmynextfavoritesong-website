@@ -7,6 +7,7 @@ export default function AudioPlayer() {
   const [paused, setPaused] = useState<boolean>(true);
 
   const stuff: any = 4;
+  const thing: any = "";
 
   useEffect(() => {
     if (!state.track) return;

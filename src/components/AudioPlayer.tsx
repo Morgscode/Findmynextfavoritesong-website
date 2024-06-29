@@ -64,8 +64,7 @@ export default function AudioPlayer() {
       />
       <div className="flex flex-row items-center bg-[#083518] px-2 py-2 rounded-lg">
         <img
-          className="mr-4 rounded-lg"
-          style={{ marginRight: 16 }}
+          className="mr-2 rounded-lg"
           src={state.track.album.images[1].url}
           height={48}
           width={48}

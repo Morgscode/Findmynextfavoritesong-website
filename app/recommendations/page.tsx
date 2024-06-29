@@ -33,7 +33,6 @@ export default function Recommendations() {
 
   async function likeTrack(track: SpotifyTrackType) {
     if (!authState.token) return;
-    track.preview_url && trackDispatch({ type: "SET_TRACK", payload: track });
     await addTrackToLibrary(authState.token, track);
     toast.success(`Added ${track.name} to liked songs playlist`);
   }

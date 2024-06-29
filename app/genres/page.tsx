@@ -98,7 +98,7 @@ export default function Genres() {
         </div>
         {genresSelected() && (
           <Link
-            className="rounded-full bg-[#1DB954] p-4 mx-4 my-2 text-[#191414] text-center"
+            className="rounded-full bg-[#1DB954] p-4 mx-4 mt-2 text-[#191414] text-center"
             href="/recommendations"
           >
             Get Recommendations

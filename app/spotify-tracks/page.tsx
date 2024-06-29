@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/src/context/AuthContext";
 import { useTrackContext } from "@/src/context/TrackContext";
@@ -72,12 +71,6 @@ export default function SpotifyTracks() {
       (trackState.track && trackState.track.id !== track.id)
     ) {
       trackDispatch({ type: "SET_TRACK", payload: track });
-    }
-    if (!isSelectedTrack(track) && sampleState.tracks.length < 3) {
-      sampleDispatch({
-        type: "SET_TRACKS",
-        payload: [...sampleState.tracks, track],
-      });
     }
     router.replace(`/track-features/${track.id}`);
   }
@@ -168,15 +161,14 @@ export default function SpotifyTracks() {
           ))}
         </div>
         {tracksSelected() && (
-          <Link
+          <button
             className="rounded-full bg-[#1DB954] p-4 mx-4 mt-2 text-[#191414] text-center"
-            href={`track-features/${
-              (trackState.track && trackState.track.id) ||
-              sampleState.tracks[0].id
-            }`}
+            onClick={() =>
+              sampleRedirect(trackState.track ?? sampleState.tracks[0])
+            }
           >
             Set Sample Preferences
-          </Link>
+          </button>
         )}
       </div>
     </section>

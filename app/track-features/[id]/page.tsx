@@ -92,7 +92,7 @@ export default function TrackFeatures() {
         </div>
         {sampleState.features && (
           <Link
-            className="rounded-full bg-[#1DB954] p-4 mx-4 my-2 text-[#191414] text-center"
+            className="rounded-full bg-[#1DB954] p-4 mx-4 mt-2 text-[#191414] text-center"
             href="/genres"
           >
             Select Genres

@@ -26,7 +26,7 @@ export default function Recommendations() {
       authState.token,
       sampleState.tracks,
       sampleState.genres,
-      sampleState.features
+      sampleState.features,
     );
     setRecommendations(tracks);
   }
@@ -42,7 +42,7 @@ export default function Recommendations() {
     trackState.track && trackState.track.id === track.id;
 
   const iconColor = (track: SpotifyTrackType) =>
-    isSelectedTrack(track) ? "#1DB954" : "white";
+    isSelectedTrack(track) ? "#1DB954" : "#FFFFFF";
 
   useEffect(() => {
     fetchRecommendations();
@@ -82,7 +82,10 @@ export default function Recommendations() {
               >
                 <div className="flex flex-row gap-1">
                   <button
-                    onClick={() => likeTrack(track)}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      likeTrack(track);
+                    }}
                     className="p-2 flex items-center justify-center cursor-pointer"
                   >
                     <svg
@@ -97,9 +100,10 @@ export default function Recommendations() {
                   </button>
                   {track.preview_url && (
                     <button
-                      onClick={() =>
-                        trackDispatch({ type: "SET_TRACK", payload: track })
-                      }
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        trackDispatch({ type: "SET_TRACK", payload: track });
+                      }}
                       className="p-2 flex items-center justify-center cursor-pointer"
                     >
                       <svg

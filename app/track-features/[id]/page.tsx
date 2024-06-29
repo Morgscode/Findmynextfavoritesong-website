@@ -28,8 +28,8 @@ export default function TrackFeatures() {
   function updateFeatures(feature: string, value: number) {
     const updated = {
       ...(sampleState.features as TrackFeatures),
+      [`${feature}`]: value,
     };
-    updated[feature] = value;
     sampleDispatch({ type: "SET_FEATURES", payload: updated });
   }
 

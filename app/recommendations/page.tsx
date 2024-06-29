@@ -50,8 +50,8 @@ export default function Recommendations() {
 
   if (recommendations.length === 0) {
     return (
-      <section className="h-full relative max-h-full w-full flex justify-center items-center overflow-hidden">
-        <p className="text-2xl text-gray-400 text-bold mb-8">
+      <section className="relative flex items-center justify-center w-full h-full max-h-full overflow-hidden">
+        <p className="mb-8 text-2xl text-gray-400 text-bold">
           Finding music to sample...
         </p>
       </section>
@@ -59,12 +59,12 @@ export default function Recommendations() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
+    <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
         <header className="flex flex-col gap-2 p-4">
-          <p className="text-white text-2xl font-bold">Recommendations</p>
+          <p className="text-2xl font-bold text-white">Recommendations</p>
         </header>
-        <div className="overflow-y-scroll flex flex-col gap-2 p-4">
+        <div className="flex flex-col gap-2 p-4 overflow-y-scroll">
           {recommendations.map((track) => (
             <div
               key={track.id}
@@ -80,13 +80,13 @@ export default function Recommendations() {
                 }
                 {...track}
               >
-                <div className="flex flex-row gap-1">
+                <div className="flex flex-row self-stretch gap-1">
                   <button
                     onClick={(event) => {
                       event.stopPropagation();
                       likeTrack(track);
                     }}
-                    className="p-2 flex items-center justify-center cursor-pointer"
+                    className="flex items-center justify-center p-2 cursor-pointer"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@ export default function Recommendations() {
                         event.stopPropagation();
                         trackDispatch({ type: "SET_TRACK", payload: track });
                       }}
-                      className="p-2 flex items-center justify-center cursor-pointer"
+                      className="flex items-center justify-center p-2 cursor-pointer"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

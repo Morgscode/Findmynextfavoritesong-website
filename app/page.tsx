@@ -13,7 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     setAppUrl(window.location.origin);
-  }, []);
+  }, [window?.location.origin]);
 
   useEffect(() => {
     if (path && !authState.isLoggedIn) {

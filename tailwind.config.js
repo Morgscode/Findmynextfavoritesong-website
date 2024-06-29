@@ -1,6 +1,4 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+const config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -13,13 +11,13 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      }, 
+      },
       spacing: {
-          "calc-h-full-50": "calc(100% - 50px)",
-          "calc-h-full-75": "calc(100% - 75px)",
-          "calc-h-full-85": "calc(100% - 85px)",
-          "calc-h-full-100": "calc(100% - 100px)",
-          "calc-h-full-150": "calc(100% - 150px)",
+        "calc-h-full-50": "calc(100% - 50px)",
+        "calc-h-full-75": "calc(100% - 75px)",
+        "calc-h-full-85": "calc(100% - 85px)",
+        "calc-h-full-100": "calc(100% - 100px)",
+        "calc-h-full-150": "calc(100% - 150px)",
       },
     },
   },

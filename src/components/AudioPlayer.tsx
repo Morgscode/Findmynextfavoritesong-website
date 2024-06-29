@@ -53,8 +53,6 @@ export default function AudioPlayer() {
 
   if (!state.track) return;
 
-  console.log(state.track.album.images);
-
   return (
     <div className="w-full">
       <audio

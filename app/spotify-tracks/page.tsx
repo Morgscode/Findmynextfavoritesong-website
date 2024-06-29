@@ -88,7 +88,7 @@ export default function SpotifyTracks() {
 
   if (tracks.length === 0) {
     return (
-      <section className="h-full max-h-full w-full flex flex-col items-center justify-center">
+      <section className="flex flex-col items-center justify-center w-full h-full max-h-full">
         <p className="text-2xl font-bold text-gray-400">
           Fetching top tracks...
         </p>
@@ -97,16 +97,16 @@ export default function SpotifyTracks() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
+    <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
-        <header className="p-4 flex flex-col gap-2">
+        <header className="flex flex-col gap-2 p-4">
           <h1 className="text-2xl font-bold">Top tracks</h1>
           <p>Select up to 3 to sample similar music from.</p>
           {tracks && <p>{tracks.length} songs</p>}
         </header>
         <div
           ref={tracksRef}
-          className="overflow-y-scroll flex flex-col gap-2 p-4"
+          className="flex flex-col gap-2 p-4 overflow-y-scroll"
           onScroll={() => {
             handleScroll() && !loading && handleListEndReached();
           }}
@@ -126,9 +126,9 @@ export default function SpotifyTracks() {
                 }
                 {...track}
               >
-                <div className="self-stretch flex flex-row gap-1">
+                <div className="flex flex-row self-stretch gap-1">
                   <button
-                    className="p-2 flex items-center justify-center cursor-pointer"
+                    className="flex items-center justify-center p-2 cursor-pointer"
                     onClick={(event) => {
                       event.stopPropagation();
                       toggleTrack(track);
@@ -146,7 +146,7 @@ export default function SpotifyTracks() {
                     </svg>
                   </button>
                   <button
-                    className="p-2 flex items-center justify-center cursor-pointer"
+                    className="flex items-center justify-center p-2 cursor-pointer"
                     onClick={(event) => {
                       event.stopPropagation();
                       sampleRedirect(track);

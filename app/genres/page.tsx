@@ -51,8 +51,8 @@ export default function Genres() {
 
   if (!genres.length) {
     return (
-      <section className="h-full relative max-h-full w-full flex justify-center items-center overflow-hidden">
-        <p className="text-2xl text-gray-400 font-bold mb-8">
+      <section className="relative flex items-center justify-center w-full h-full max-h-full overflow-hidden">
+        <p className="mb-8 text-2xl font-bold text-gray-400">
           Fetching Genres...
         </p>
       </section>
@@ -60,10 +60,10 @@ export default function Genres() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
+    <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
-        <header className="p-4 flex flex-col gap-2 p-4">
-          <p className="text-white text-2xl font-bold">Available Seed Genres</p>
+        <header className="flex flex-col gap-2 p-4">
+          <p className="text-2xl font-bold text-white">Available Seed Genres</p>
           <p className="text-gray-400">
             Select up to {5 - sampleState.tracks.length} to tell Spotify what
             genres you want to sample music from.
@@ -74,7 +74,10 @@ export default function Genres() {
                 <button
                   key={`selected-${genre}-${index}`}
                   className="p-2 rounded-full bg-[#1DB954]"
-                  onClick={() => toggleGenre(genre)}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    toggleGenre(genre);
+                  }}
                 >
                   <p className="px-2 text-[#191414]">{genre}</p>
                 </button>
@@ -82,7 +85,7 @@ export default function Genres() {
             </div>
           )}
         </header>
-        <div className="overflow-y-scroll relative flex flex-col gap-4 p-4">
+        <div className="relative flex flex-col gap-4 p-4 overflow-y-scroll">
           <div className="flex flex-row flex-wrap gap-2">
             {genres.map((genre, index) => (
               <button

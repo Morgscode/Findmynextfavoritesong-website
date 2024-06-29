@@ -48,7 +48,7 @@ export default function TrackFeatures() {
             <label className="text-lg" htmlFor={`slider-${key}`}>
               {info.name} - <span className="text-[#1DB954]">{value}</span>
             </label>
-            <p className="text-gray-400 text-sm">{info.description}</p>
+            <p className="text-sm text-gray-400">{info.description}</p>
             <input
               className="fmnfs-range-slider"
               id={`slider-${key}`}
@@ -67,7 +67,7 @@ export default function TrackFeatures() {
 
   if (!sampleState.features) {
     return (
-      <section className="h-full max-h-full w-full flex flex-col items-center justify-center">
+      <section className="flex flex-col items-center justify-center w-full h-full max-h-full">
         <p className="text-2xl font-bold text-gray-400 mb-8s">
           Fetching track analysis...
         </p>
@@ -76,18 +76,18 @@ export default function TrackFeatures() {
   }
 
   return (
-    <section className="h-full relative max-h-full w-full flex justify-center overflow-hidden">
+    <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
-        <header className="mb-4 flex flex-col gap-2 p-4">
+        <header className="flex flex-col gap-2 p-4 mb-4">
           <h1 className="text-2xl font-bold">Track features</h1>
-          <p className="text-gray-400 text-sm">
+          <p className="text-sm text-gray-400">
             These attributes are a measure of how Spotify classifies music. You
             can either keep these features as they are or modify them to your
             own taste and mood to influence the kind of recommendations you will
             recieve
           </p>
         </header>
-        <div className="overflow-y-scroll relative flex flex-col gap-4 p-4">
+        <div className="relative flex flex-col gap-4 p-4 overflow-y-scroll">
           {sliders(sampleState.features)}
         </div>
         {sampleState.features && (

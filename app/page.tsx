@@ -50,8 +50,8 @@ export default function Home() {
   };
 
   return (
-    <section className="h-full w-full flex flex-col items-center justify-center">
-      <p className="text-gray-400 text-center text-2xl p-8 mb-4">
+    <section className="flex flex-col items-center justify-center w-full h-full">
+      <p className="p-8 mb-4 text-2xl text-center text-gray-400">
         Sample music from over 100 genres based on your current top tracks, your
         own personal taste and mood.
       </p>

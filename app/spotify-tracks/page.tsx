@@ -92,14 +92,14 @@ export default function SpotifyTracks() {
   return (
     <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
-        <header className="flex flex-col gap-2 p-4">
+        <header className="flex flex-col p-4">
           <h1 className="text-2xl font-bold">Top tracks</h1>
           <p>Select up to 3 to sample similar music from.</p>
           {tracks && <p>{tracks.length} songs</p>}
         </header>
         <div
           ref={tracksRef}
-          className="flex flex-col gap-2 p-4 overflow-y-scroll"
+          className="flex flex-col gap-2 px-4 overflow-y-scroll"
           onScroll={() => {
             handleScroll() && !loading && handleListEndReached();
           }}

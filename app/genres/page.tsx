@@ -62,7 +62,7 @@ export default function Genres() {
   return (
     <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
-        <header className="flex flex-col gap-2 p-4">
+        <header className="flex flex-col p-4">
           <p className="text-2xl font-bold text-white">Available Seed Genres</p>
           <p className="text-gray-400">
             Select up to {5 - sampleState.tracks.length} to tell Spotify what
@@ -85,7 +85,7 @@ export default function Genres() {
             </div>
           )}
         </header>
-        <div className="relative flex flex-col gap-4 p-4 overflow-y-scroll">
+        <div className="relative flex flex-col gap-4 px-4 overflow-y-scroll">
           <div className="flex flex-row flex-wrap gap-2">
             {genres.map((genre, index) => (
               <button

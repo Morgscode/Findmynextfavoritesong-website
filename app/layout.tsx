@@ -19,11 +19,13 @@ export default function RootLayout({
       <SampleProvider>
         <TrackProvider>
           <html lang="en">
-            <body className="relative w-screen h-screen max-h-screen">
-              <main className="bg-[#191414] h-full">
-                <div className="relative h-calc-h-full-85">{children}</div>
-                <div className="max-w-[800px] mx-auto">
-                  <div className="mx-4 mt-2">
+            <body className="relative w-screen h-screen max-h-screen bg-[#191414]">
+              <main className="bg-[#191414] h-full flex flex-col items-stretch">
+                <div className="h-full max-h-full overflow-y-hidden ">
+                  {children}
+                </div>
+                <div className="w-full max-w-[800px] mx-auto">
+                  <div className="mx-4 my-2">
                     <AudioPlayer />
                   </div>
                   <ToastContainer

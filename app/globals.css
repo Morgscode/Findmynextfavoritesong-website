@@ -8,6 +8,68 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+:root {
+  --toastify-color-light: #fff;
+  --toastify-color-dark: #121212;
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #1db954;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #e74c3c;
+  --toastify-color-transparent: rgba(255, 255, 255, 0.7);
+
+  --toastify-icon-color-info: var(--toastify-color-info);
+  --toastify-icon-color-success: var(--toastify-color-success);
+  --toastify-icon-color-warning: var(--toastify-color-warning);
+  --toastify-icon-color-error: var(--toastify-color-error);
+
+  --toastify-toast-width: 320px;
+  --toastify-toast-background: #fff;
+  --toastify-toast-min-height: 64px;
+  --toastify-toast-max-height: 800px;
+  --toastify-font-family: sans-serif;
+  --toastify-z-index: 9999;
+
+  --toastify-toast-bottom: 0;
+
+  --toastify-text-color-light: #191414;
+  --toastify-text-color-dark: #fff;
+
+  --toastify-text-color-info: #fff;
+  --toastify-text-color-success: #fff;
+  --toastify-text-color-warning: #fff;
+  --toastify-text-color-error: #fff;
+
+  --toastify-spinner-color: #616161;
+  --toastify-spinner-color-empty-area: #e0e0e0;
+
+  --toastify-color-progress-light: linear-gradient(
+    to right,
+    #1db954,
+    #5ac8fa,
+    #007aff,
+    #34aadc,
+    #5856d6,
+    #ff2d55
+  );
+
+  --toastify-color-progress-dark: #bb86fc;
+  --toastify-color-progress-info: var(--toastify-color-info);
+  --toastify-color-progress-success: var(--toastify-color-success);
+  --toastify-color-progress-warning: var(--toastify-color-warning);
+  --toastify-color-progress-error: var(--toastify-color-error);
+
+  --toastify-color-progress-bgo: 0.2;
+}
+
+.Toastify__toast {
+  border-radius: 0.5rem;
+  margin-bottom: 0;
+}
+
+.Toastify__toast-icon {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -44,7 +106,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #1DB954;
+  background: #1db954;
   border-radius: 40px;
 }
 
@@ -70,39 +132,39 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #1DB954;
+  background: #1db954;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .fmnfs-range-slider::-webkit-slider-thumb:hover {
-  background: #1DB954;
+  background: #1db954;
 }
 
 .fmnfs-range-slider::-moz-range-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #1DB954;
+  background: #1db954;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .fmnfs-range-slider::-moz-range-thumb:hover {
-  background: #1DB954;
+  background: #1db954;
 }
 
 .fmnfs-range-slider::-ms-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #1DB954;
+  background: #1db954;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
 .fmnfs-range-slider::-ms-thumb:hover {
-  background: #1DB954;
+  background: #1db954;
 }
 
 .fmnfs-range-slider::-ms-track {

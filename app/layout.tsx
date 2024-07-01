@@ -5,7 +5,7 @@ import { AuthProvider } from "@/src/context/AuthContext";
 import { TrackProvider } from "@/src/context/TrackContext";
 import { SampleProvider } from "@/src/context/SampleConext";
 import AudioPlayer from "@/src/components/AudioPlayer";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
@@ -20,26 +20,28 @@ export default function RootLayout({
         <TrackProvider>
           <html lang="en">
             <body className="relative w-screen h-screen max-h-screen bg-[#191414]">
-              <main className="bg-[#191414] h-full flex flex-col items-stretch">
-                <div className="h-full max-h-full overflow-y-hidden ">
+              <main className="bg-[#191414] h-full w-full max-w-full max-h-full flex flex-col items-stretch">
+                <div className="relative w-full h-full max-w-full max-h-full overflow-y-hidden ">
                   {children}
-                </div>
-                <div className="w-full max-w-[800px] mx-auto">
-                  <div className="mx-4 my-2">
-                    <AudioPlayer />
-                  </div>
                   <ToastContainer
-                    position="top-right"
-                    autoClose={3000}
-                    hideProgressBar={false}
+                    className="absolute max-w-[800px] w-full px-4 text-sm rounded-lg sm:rounded-lg mb-0"
+                    position="bottom-center"
+                    autoClose={2000}
+                    hideProgressBar={true}
                     newestOnTop={false}
                     closeOnClick
                     rtl={false}
                     pauseOnFocusLoss={false}
                     draggable={false}
                     pauseOnHover={false}
-                    theme="dark"
+                    theme="light"
+                    transition={Zoom}
                   />
+                </div>
+                <div className="relative w-full max-w-[800px] mx-auto">
+                  <div className="mx-4 my-2">
+                    <AudioPlayer />
+                  </div>
                 </div>
               </main>
             </body>

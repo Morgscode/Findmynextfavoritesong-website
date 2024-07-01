@@ -19,7 +19,7 @@ export default function SpotifyTrack({
     ? "font-bold text-[#1DB954]"
     : "font-bold text-white";
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center max-w-full gap-4">
       <img
         className="relative rounded-md"
         src={album.images[1]?.url ?? album.images[0]?.url}
@@ -37,7 +37,7 @@ export default function SpotifyTrack({
               </p>
             </div>
           )}
-          <p className="text-gray-400 text-xs">
+          <p className="text-xs text-gray-400">
             {artists[0].name} - {album.name}
           </p>
         </div>

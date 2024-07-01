@@ -34,7 +34,7 @@ export default function Recommendations() {
   async function likeTrack(track: SpotifyTrackType) {
     if (!authState.token) return;
     await addTrackToLibrary(authState.token, track);
-    toast.success(`Added ${track.name} to liked songs playlist`);
+    toast.success(`Added ${track.name} to Liked Songs`);
   }
 
   const isSelectedTrack = (track: SpotifyTrackType) =>
@@ -60,7 +60,7 @@ export default function Recommendations() {
   return (
     <section className="relative flex justify-center w-full h-full max-h-full overflow-hidden">
       <div className="relative flex flex-col max-w-[800px] lg:w-[800px]">
-        <header className="flex flex-col p-4">
+        <header className="flex flex-col gap-1 p-4">
           <p className="text-2xl font-bold text-white">Recommendations</p>
         </header>
         <div className="flex flex-col gap-2 px-4 overflow-y-scroll">

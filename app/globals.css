@@ -29,6 +29,8 @@
   --toastify-font-family: sans-serif;
   --toastify-z-index: 9999;
 
+  --toastify-toast-bottom: 0;
+
   --toastify-text-color-light: #191414;
   --toastify-text-color-dark: #fff;
 
@@ -61,6 +63,7 @@
 
 .Toastify__toast {
   border-radius: 0.5rem;
+  margin-bottom: 0;
 }
 
 .Toastify__toast-icon {

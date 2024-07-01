@@ -24,7 +24,7 @@ export default function RootLayout({
                 <div className="relative w-full h-full max-w-full max-h-full overflow-y-hidden ">
                   {children}
                   <ToastContainer
-                    className="absolute w-full px-4 text-sm rounded-lg sm:rounded-lg"
+                    className="absolute max-w-[800px] w-full px-4 text-sm rounded-lg sm:rounded-lg mb-0"
                     position="bottom-center"
                     autoClose={2000}
                     hideProgressBar={true}

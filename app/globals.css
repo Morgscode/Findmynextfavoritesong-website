@@ -63,7 +63,7 @@
 
 .Toastify__toast {
   border-radius: 0.5rem;
-  margin-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 .Toastify__toast-icon {

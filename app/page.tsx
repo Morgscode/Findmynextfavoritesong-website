@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getSpotifyAuthUrl } from "@/src/lib/spotify";
 import { useAuthContext } from "@/src/context/AuthContext";
 import { usePathname } from "next/navigation";
+import { setSessionToken } from "./actions";
 
 export default function Home() {
   const { state: authState, dispatch: authDispatch } = useAuthContext();
@@ -19,8 +20,12 @@ export default function Home() {
     if (path && !authState.isLoggedIn) {
       const { hash } = window.location;
       if (hash && hash.startsWith("#access_token")) {
-        authDispatch({ type: "SET_TOKEN", payload: hash });
+        authDispatch({
+          type: "SET_TOKEN",
+          payload: new URLSearchParams(hash).get("#access_token") as string,
+        });
         authDispatch({ type: "LOGIN" });
+        setSessionToken(hash);
       }
     }
   }, [path]);

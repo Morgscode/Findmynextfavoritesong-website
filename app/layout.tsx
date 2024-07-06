@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AuthProvider } from "@/src/context/AuthContext";
 import { TrackProvider } from "@/src/context/TrackContext";
 import { SampleProvider } from "@/src/context/SampleConext";
 import AudioPlayer from "@/src/components/AudioPlayer";
+import { getSessionToken } from "./actions";
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
@@ -14,6 +15,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [token, setToken] = useState<string>("");
+
+  async function getToken() {
+    const token = await getSessionToken();
+    setToken(token ?? "");
+  }
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
   return (
     <AuthProvider>
       <SampleProvider>
@@ -21,6 +33,7 @@ export default function RootLayout({
           <html lang="en">
             <body className="relative w-screen h-screen max-h-screen bg-[#191414]">
               <main className="bg-[#191414] h-full w-full max-w-full max-h-full flex flex-col items-stretch">
+                <input type="hidden" name="_spotify_api_token" value={token} />
                 <div className="relative w-full h-full max-w-full max-h-full overflow-y-hidden ">
                   {children}
                   <ToastContainer

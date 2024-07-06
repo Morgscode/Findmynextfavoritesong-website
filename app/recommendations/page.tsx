@@ -11,6 +11,8 @@ import {
   addTrackToLibrary,
   type SpotifyTrack as SpotifyTrackType,
 } from "@src/lib/spotify";
+import { accessToken } from "@src/lib/helpers";
+import { useRouter } from "next/navigation";
 
 export default function Recommendations() {
   const [recommendations, setRecommendations] = useState<
@@ -19,11 +21,14 @@ export default function Recommendations() {
   const { state: authState } = useAuthContext();
   const { state: trackState, dispatch: trackDispatch } = useTrackContext();
   const { state: sampleState } = useSampleContext();
+  const router = useRouter();
 
   async function fetchRecommendations() {
-    if (!authState.token || !sampleState.features) return;
+    if (!sampleState.features) return;
+    const token = await accessToken(authState.token);
+    if (!token) router.push("/");
     const { tracks } = await getRecommendations(
-      authState.token,
+      token,
       sampleState.tracks,
       sampleState.genres,
       sampleState.features,
@@ -32,8 +37,8 @@ export default function Recommendations() {
   }
 
   async function likeTrack(track: SpotifyTrackType) {
-    if (!authState.token) return;
-    await addTrackToLibrary(authState.token, track);
+    const token = await accessToken(authState.token);
+    await addTrackToLibrary(token, track);
     toast.success(`Added ${track.name} to Liked Songs`);
   }
 

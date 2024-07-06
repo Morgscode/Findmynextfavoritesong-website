@@ -2,22 +2,27 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSampleContext } from "@src/context/SampleConext";
 import { useAuthContext } from "@/src/context/AuthContext";
 import { getSeedGenres } from "@/src/lib/spotify";
+import { accessToken } from "@src/lib/helpers";
 
 export default function Genres() {
   const [genres, setGenres] = useState<Array<string>>([]);
   const { state: authState } = useAuthContext();
   const { state: sampleState, dispatch: sampleDispatch } = useSampleContext();
+  const router = useRouter();
 
   async function fetchGenres() {
-    if (!authState.token) return;
-    const genres = await getSeedGenres(authState.token);
+    const token = await accessToken(authState.token);
+    if (!token) router.push("/");
+    const genres = await getSeedGenres(token);
     setGenres(genres);
   }
 
   useEffect(() => {
+    if (!sampleState.tracks.length) router.push("/spotify-tracks");
     fetchGenres();
   }, []);
 

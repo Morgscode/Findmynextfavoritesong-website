@@ -45,7 +45,7 @@ function authReducer(state: AuthState, action: AuthAction) {
     case "SET_TOKEN":
       return {
         ...state,
-        token: new URLSearchParams(action.payload).get("#access_token"),
+        token: action.payload,
       };
     default:
       return state;

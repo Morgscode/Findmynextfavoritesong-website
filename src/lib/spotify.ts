@@ -129,10 +129,8 @@ type RecommendationsResponse = {
   seeds: Array<RecommendationSeed>;
 };
 
-export function getSpotifyAuthUrl(returnUrl:  string, client: string) {
-  return AUTH_URL.replace(
-    "<<<CLIENT_ID>>>", client
-  )
+export function getSpotifyAuthUrl(returnUrl: string, client: string) {
+  return AUTH_URL.replace("<<<CLIENT_ID>>>", client)
     .replace("<<<REDIRECT_URI>>>", returnUrl)
     .replace("<<<SCOPES>>>", AUTH_SCOPES);
 }
@@ -153,7 +151,7 @@ export async function getTopTracks(token: string, url: string | null = null) {
     }
     const body = await response.json();
     return {
-      tracks: body.items as Array<SpotifyTrack>,
+      tracks: [...body.items] as Array<SpotifyTrack>,
       next: body.next as string,
     };
   } catch (error) {
@@ -183,7 +181,7 @@ export async function getTrackFeatures(token: string, id: string) {
     if (response.status !== 200) {
       throw new Error(response.statusText);
     }
-    return (await response.json()) as TrackFeatures;
+    return { ...((await response.json()) as TrackFeatures) };
   } catch (error) {
     // eslint-disable-next-line
     console.error(error);
@@ -206,7 +204,7 @@ export async function getSeedGenres(token: string) {
       throw new Error(response.statusText);
     }
     const body = await response.json();
-    return body.genres as Array<string>;
+    return [...body.genres] as Array<string>;
   } catch (error) {
     // eslint-disable-next-line
     console.error(error);
@@ -273,8 +271,8 @@ export async function getRecommendations(
     }
     const body = await response.json();
     return {
-      tracks: body.tracks as Array<SpotifyTrack>,
-      seeds: body.seeds as Array<RecommendationSeed>,
+      tracks: [...body.tracks] as Array<SpotifyTrack>,
+      seeds: [...body.seeds] as Array<RecommendationSeed>,
     } as RecommendationsResponse;
   } catch (error) {
     // eslint-disable-next-line

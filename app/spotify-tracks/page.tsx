@@ -10,6 +10,7 @@ import {
   type SpotifyTrack as SpotifyTrackType,
 } from "@/src/lib/spotify";
 import SpotifyTrack from "@/src/components/SpotifyTrack";
+import { accessToken } from "@/src/lib/helpers";
 
 export default function SpotifyTracks() {
   const tracksRef = useRef(null);
@@ -22,9 +23,10 @@ export default function SpotifyTracks() {
   const router = useRouter();
 
   async function getTracks(url: string | null = null) {
-    if (!authState.token) return;
     setLoading(true);
-    const { tracks, next } = await getTopTracks(authState.token, url);
+    const token = await accessToken(authState.token);
+    if (!token) router.push("/");
+    const { tracks, next } = await getTopTracks(token, url);
     setTracks((topTracks) => [...topTracks, ...tracks]);
     setNext(next);
     setLoading(false);

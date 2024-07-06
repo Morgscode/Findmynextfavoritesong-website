@@ -33,11 +33,7 @@ export default function RootLayout({
           <html lang="en">
             <body className="relative w-screen h-screen max-h-screen bg-[#191414]">
               <main className="bg-[#191414] h-full w-full max-w-full max-h-full flex flex-col items-stretch">
-                <input
-                  type="hidden"
-                  name="_spotify_api_token"
-                  value={token as unknown as string}
-                />
+                <input type="hidden" name="_spotify_api_token" value={token} />
                 <div className="relative w-full h-full max-w-full max-h-full overflow-y-hidden ">
                   {children}
                   <ToastContainer

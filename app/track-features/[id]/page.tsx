@@ -7,18 +7,23 @@ import { useSampleContext } from "@src/context/SampleConext";
 import { getTrackFeatures, type TrackFeatures } from "@src/lib/spotify";
 import { usePathname } from "next/navigation";
 import { TRACK_FEATURES_INFO } from "@src/lib/spotify";
+import { accessToken } from "@/src/lib/helpers";
+import { useRouter } from "next/router";
 
 export default function TrackFeatures() {
-  const { state } = useAuthContext();
+  const { state: authState } = useAuthContext();
   const path = usePathname().split("/");
   const id = path[path.length - 1];
   const { state: sampleState, dispatch: sampleDispatch } = useSampleContext();
+  const router = useRouter();
 
   async function fetchTrackFeatures() {
     if (!id) return;
     const trackId = typeof id === "string" ? id : id[0];
     if (sampleState.features && sampleState.features.id === trackId) return;
-    const features = await getTrackFeatures(state.token!, trackId);
+    const token = await accessToken(authState.token);
+    if (!token) router.push("/");
+    const features = await getTrackFeatures(token, trackId);
     sampleDispatch({
       type: "SET_FEATURES",
       payload: features as TrackFeatures,

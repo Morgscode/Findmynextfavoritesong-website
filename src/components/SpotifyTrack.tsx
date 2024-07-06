@@ -23,8 +23,8 @@ export default function SpotifyTrack({
       <img
         className="relative rounded-md"
         src={album.images[1]?.url ?? album.images[0]?.url}
-        height={64}
-        width={64}
+        height={50}
+        width={50}
         alt={name}
       />
       <div className="flex flex-col gap-1 mr-auto">
@@ -32,9 +32,7 @@ export default function SpotifyTrack({
         <div className="flex flex-row items-center">
           {explicit && (
             <div className="mr-2">
-              <p className="text-[#191414] text-gray-400 text-sm font-bold">
-                E
-              </p>
+              <p className="text-sm font-bold text-gray-400">E</p>
             </div>
           )}
           <p className="text-xs text-gray-400">

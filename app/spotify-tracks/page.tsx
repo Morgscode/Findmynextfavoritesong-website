@@ -72,7 +72,7 @@ export default function SpotifyTracks() {
     ) {
       trackDispatch({ type: "SET_TRACK", payload: track });
     }
-    if (sampleState.tracks.length < 3) {
+    if (!isSelectedTrack(track) && sampleState.tracks.length < 3) {
       sampleDispatch({
         type: "SET_TRACKS",
         payload: [...sampleState.tracks, track],

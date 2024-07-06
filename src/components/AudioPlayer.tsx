@@ -64,16 +64,18 @@ export default function AudioPlayer() {
         src={state.track.preview_url}
         onEnded={() => handleEnded()}
       />
-      <div className="flex flex-row items-center bg-[#083518] px-2 py-2 rounded-lg">
+      <div className="flex flex-row items-center gap-4 bg-[#083518] px-2 py-2 rounded-lg">
         <img
-          className="mr-2 rounded-lg"
-          src={state.track.album.images[1].url}
-          height={48}
-          width={48}
+          className="rounded-lg"
+          src={
+            state.track.album.images[1]?.url ?? state.track.album.images[0]?.url
+          }
+          height={50}
+          width={50}
         />
         <div className="">
           <p className="text-white">{state.track.name}</p>
-          <p className="text-white text-sm">{state.track.artists[0].name}</p>
+          <p className="text-sm text-white">{state.track.artists[0].name}</p>
         </div>
         <button onClick={() => toggleAudio()} className="ml-auto mr-2">
           {icon()}

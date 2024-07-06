@@ -3,14 +3,14 @@
 import { cookies } from "next/headers";
 
 export async function setSessionToken(token: string) {
-  const oldSession = cookies().get("session");
+  const oldSession = cookies().has("session")
+    ? cookies().get("session")?.value
+    : {};
 
-  const newSession = oldSession
-    ? {
-        ...JSON.parse(oldSession.value),
-        token: new URLSearchParams(token).get("#access_token"),
-      }
-    : { token: new URLSearchParams(token).get("#access_token") };
+  const newSession = {
+    ...oldSession,
+    token,
+  };
 
   cookies().set("session", JSON.stringify(newSession), {
     httpOnly: true,
@@ -21,11 +21,12 @@ export async function setSessionToken(token: string) {
 
   return {
     status: "success",
+    message: "token set for 30 minutes",
   };
 }
 
 export async function getSessionToken() {
   const session = cookies().get("session");
-  if (!session) return undefined;
-  return JSON.parse(session.value)?.token || undefined;
+  if (!session) return null;
+  return JSON.parse(session.value)?.token || null;
 }

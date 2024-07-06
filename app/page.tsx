@@ -20,12 +20,14 @@ export default function Home() {
     if (path && !authState.isLoggedIn) {
       const { hash } = window.location;
       if (hash && hash.startsWith("#access_token")) {
+        const token = new URLSearchParams(hash).get("#access_token") as string;
+        if (!token) return;
         authDispatch({
           type: "SET_TOKEN",
-          payload: new URLSearchParams(hash).get("#access_token") as string,
+          payload: token,
         });
         authDispatch({ type: "LOGIN" });
-        setSessionToken(hash);
+        setSessionToken(token);
       }
     }
   }, [path]);

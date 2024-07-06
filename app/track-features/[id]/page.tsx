@@ -8,7 +8,7 @@ import { getTrackFeatures, type TrackFeatures } from "@src/lib/spotify";
 import { usePathname } from "next/navigation";
 import { TRACK_FEATURES_INFO } from "@src/lib/spotify";
 import { accessToken } from "@/src/lib/helpers";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function TrackFeatures() {
   const { state: authState } = useAuthContext();
@@ -39,6 +39,7 @@ export default function TrackFeatures() {
   }
 
   useEffect(() => {
+    if (!sampleState.tracks.length) router.push("/spotify-tracks");
     fetchTrackFeatures();
   }, []);
 

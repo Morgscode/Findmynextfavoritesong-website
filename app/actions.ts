@@ -3,14 +3,14 @@
 import { cookies } from "next/headers";
 
 export async function setSessionToken(token: string) {
-  const oldSession = cookies().get("session");
+  const oldSession = cookies().has("session")
+    ? cookies().get("session")?.value
+    : {};
 
-  const newSession = oldSession
-    ? {
-        ...JSON.parse(oldSession.value),
-        token,
-      }
-    : { token };
+  const newSession = {
+    ...oldSession,
+    token,
+  };
 
   cookies().set("session", JSON.stringify(newSession), {
     httpOnly: true,

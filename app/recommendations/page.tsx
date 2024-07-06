@@ -49,6 +49,8 @@ export default function Recommendations() {
     isSelectedTrack(track) ? "#1DB954" : "#FFFFFF";
 
   useEffect(() => {
+    if (!sampleState.tracks.length || !sampleState.features)
+      router.push("/spotify-tracks");
     fetchRecommendations();
   }, []);
 

@@ -22,7 +22,8 @@ export default function Genres() {
   }
 
   useEffect(() => {
-    if (!sampleState.tracks.length) router.push("/spotify-tracks");
+    if (!sampleState.tracks.length || !sampleState.features)
+      router.push("/spotify-tracks");
     fetchGenres();
   }, []);
 

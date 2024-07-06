@@ -21,6 +21,7 @@ export async function setSessionToken(token: string) {
 
   return {
     status: "success",
+    message: "token set for 30 minutes",
   };
 }
 

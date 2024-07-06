@@ -8,9 +8,9 @@ export async function setSessionToken(token: string) {
   const newSession = oldSession
     ? {
         ...JSON.parse(oldSession.value),
-        token: new URLSearchParams(token).get("#access_token"),
+        token,
       }
-    : { token: new URLSearchParams(token).get("#access_token") };
+    : { token };
 
   cookies().set("session", JSON.stringify(newSession), {
     httpOnly: true,
@@ -26,6 +26,6 @@ export async function setSessionToken(token: string) {
 
 export async function getSessionToken() {
   const session = cookies().get("session");
-  if (!session) return undefined;
-  return JSON.parse(session.value)?.token || undefined;
+  if (!session) return null;
+  return JSON.parse(session.value)?.token || null;
 }

@@ -39,7 +39,7 @@ export default function RootLayout({
                   />
                 </div>
                 <div className="relative w-full max-w-[800px] mx-auto">
-                  <div className="mx-4 my-2">
+                  <div className="m-2">
                     <AudioPlayer />
                   </div>
                 </div>

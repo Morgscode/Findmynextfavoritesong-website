@@ -25,7 +25,7 @@ export default function SpotifyTracks() {
   async function getTracks(url: string | null = null) {
     setLoading(true);
     const token = await accessToken(authState.token);
-    if (!token) router.push("/");
+    if (!token) return router.push("/");
     const { tracks, next } = await getTopTracks(token, url);
     setTracks((topTracks) => [...topTracks, ...tracks]);
     setNext(next);

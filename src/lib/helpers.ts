@@ -9,7 +9,7 @@ export async function accessToken(token: string | null) {
     if (token) return token;
   }
   {
-    const token = await getSessionToken();
+    const token: string = await getSessionToken();
     if (token) return token;
   }
   return null;

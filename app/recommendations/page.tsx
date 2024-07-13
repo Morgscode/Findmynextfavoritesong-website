@@ -26,7 +26,7 @@ export default function Recommendations() {
   async function fetchRecommendations() {
     if (!sampleState.features) return;
     const token = await accessToken(authState.token);
-    if (!token) router.push("/");
+    if (!token) return router.push("/");
     const { tracks } = await getRecommendations(
       token,
       sampleState.tracks,
@@ -37,7 +37,7 @@ export default function Recommendations() {
   }
 
   async function likeTrack(track: SpotifyTrackType) {
-    const token = await accessToken(authState.token);
+    const token = (await accessToken(authState.token)) as string;
     await addTrackToLibrary(token, track);
     toast.success(`Added ${track.name} to Liked Songs`);
   }

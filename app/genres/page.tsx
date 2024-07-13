@@ -16,7 +16,7 @@ export default function Genres() {
 
   async function fetchGenres() {
     const token = await accessToken(authState.token);
-    if (!token) router.push("/");
+    if (!token) return router.push("/");
     const genres = await getSeedGenres(token);
     setGenres(genres);
   }

@@ -22,7 +22,7 @@ export default function TrackFeatures() {
     const trackId = typeof id === "string" ? id : id[0];
     if (sampleState.features && sampleState.features.id === trackId) return;
     const token = await accessToken(authState.token);
-    if (!token) router.push("/");
+    if (!token) return router.push("/");
     const features = await getTrackFeatures(token, trackId);
     sampleDispatch({
       type: "SET_FEATURES",

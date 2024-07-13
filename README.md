@@ -37,7 +37,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 # TODOS
 
-- put token in session on login
-- fetch token from session on state init
-- spotify api error handling
+## Phase 2
+
 - global error handling
+- search by recently played
+- sample context ui
+- add song to playlist
+- aggregate track features for all tracks in sample
+
+## Phase 3
+
+- get current player context
+- store recent samples in local web storage
+- show & use sample history for seeding new sample sessions

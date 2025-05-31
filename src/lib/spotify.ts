@@ -144,8 +144,6 @@ export async function getTopTracks(token: string, url: string | null = null) {
         Authorization: `Bearer ${token}`,
       },
     });
-    // eslint-disable-next-line
-    console.log(response.status);
     if (response.status !== 200) {
       throw new Error(response.statusText);
     }
